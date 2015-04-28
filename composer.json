@@ -1,0 +1,23 @@
+{
+  "name": "ltd-beget/apache-configurator",
+  "type": "library",
+  "description": "PHP library for parsing and editing apache configuration files.",
+  "keywords": [
+    "apache"
+  ],
+  "authors": [
+    {
+      "name": "Viskov Sergey",
+      "homepage": "https://github.com/voksiv"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "LTDBeget\\ApacheConfigurator": "src"
+    }
+  }
+}
