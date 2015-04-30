@@ -9,28 +9,28 @@
 namespace LTDBeget\ApacheConfigurator\Interfaces;
 
 
-interface iInnerDirectiveAble
+interface iContext extends iType
 {
     /**
      * return all innerDirectives
-     * @return iContextAble[]
+     * @return iDirective[]
      */
     public function getInnerDirectives();
 
     /**
-     * iterate throw all children of iInnerDirectiveAble
-     * @yield iContextAble
+     * iterate throw all children of iContext
+     * @yield iDirective
      */
     public function iterateChildren();
 
     /**
-     * add InnerDirective in iInnerDirectiveAble
+     * add InnerDirective in iContext
      * @param iDirective $directive
      */
     public function appendInnedDirective(iDirective $directive);
 
     /**
-     * detach innerDirective from iInnerDirectiveAble
+     * detach innerDirective from iContext
      * @param iDirective $directive
      */
     public function detachInnerDirective(iDirective $directive);

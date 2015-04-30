@@ -15,4 +15,10 @@ interface iType {
      * @return String
      */
     public function getType();
+
+    /**
+     * Name of Apache directive with full qualified namespace or file type
+     * @return String
+     */
+    public static function getFullName();
 }

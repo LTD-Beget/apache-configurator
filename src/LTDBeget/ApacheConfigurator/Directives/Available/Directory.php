@@ -16,37 +16,54 @@ use LTDBeget\ApacheConfigurator\Interfaces\iDirective;
 class Directory extends Directive
 {
     /**
-     * @var String
-     */
-    protected $module = "core";
-
-    /**
-     * Text description of apache directive
-     * @var String
-     */
-    protected $description = "Enclose a group of directives that apply only to the named file-system directory, sub-directories, and their contents.";
-
-    /**
-     * Example Apache directive syntax
-     * @var String
-     */
-    protected $syntax = '<Directory "directory-path"> ... </Directory>';
-
-    /**
-     * link to full description of apache directive
-     * @var String
-     */
-    protected $apacheDocLink = "/docs/2.4/mod/core.html#directory";
-
-    /**
-     * @var Boolean
-     */
-    protected $isSection = true;
-
-    /**
      * @var iDirective[]|null
      */
     protected $innerDirectives = [];
+
+    /**
+     * Return link to full description of apache directive
+     * @return String
+     */
+    public function getApacheDocLink()
+    {
+        return $this->apacheSite."/docs/2.4/mod/core.html#directory";
+    }
+
+    /**
+     * the source module which defines the directive
+     * @return String
+     */
+    public function getModule()
+    {
+        return "core";
+    }
+
+    /**
+     * Return text description of apache directive
+     * @return String
+     */
+    public function getDescription()
+    {
+        return "Enclose a group of directives that apply only to the named file-system directory, sub-directories, and their contents.";
+    }
+
+    /**
+     * Return Apache directive Syntax
+     * @return String
+     */
+    public function getSyntax()
+    {
+        return '<Directory "directory-path"> ... </Directory>';
+    }
+
+    /**
+     * is this directive can include inner directives
+     * @return boolean
+     */
+    public function isSection()
+    {
+        return true;
+    }
 
     /**
      * Set allowed context of concrete directive
@@ -54,7 +71,7 @@ class Directory extends Directive
     protected function setAllowedContext()
     {
         $this->allowedContext = [
-            VirtualHost::className(),
+            VirtualHost::getFullName(),
             ConfigurationFile::SERVER_CONFIG
         ];
     }
