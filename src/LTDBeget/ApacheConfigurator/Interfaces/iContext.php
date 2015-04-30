@@ -9,7 +9,7 @@
 namespace LTDBeget\ApacheConfigurator\Interfaces;
 
 
-interface iInnerDirectiveAble
+interface iContext
 {
     /**
      * return all innerDirectives
