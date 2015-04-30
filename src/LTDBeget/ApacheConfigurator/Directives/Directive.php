@@ -11,14 +11,12 @@ namespace LTDBeget\ApacheConfigurator\Directives;
 
 use LTDBeget\ApacheConfigurator\Exceptions\NotAllowedContextException;
 use LTDBeget\ApacheConfigurator\Exceptions\NotAllowedValueException;
-use LTDBeget\ApacheConfigurator\Interfaces\iClass;
 use LTDBeget\ApacheConfigurator\Interfaces\iContextAble;
 use LTDBeget\ApacheConfigurator\Interfaces\iDirective;
 use LTDBeget\ApacheConfigurator\Interfaces\iDirectivePath;
-use LTDBeget\ApacheConfigurator\Interfaces\iInnerDirectiveAble;
-use LTDBeget\ApacheConfigurator\Interfaces\iType;
+use LTDBeget\ApacheConfigurator\Interfaces\iContext;
 
-class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType, iClass
+class Directive implements iDirective
 {
     /**
      * Site of Apache full documentation
@@ -27,17 +25,12 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
     protected $apacheSite = "http://httpd.apache.org";
 
     /**
-     * @var String
-     */
-    protected $module;
-
-    /**
      * @var Array|null
      */
     protected $allowedContext;
 
     /**
-     * @var iInnerDirectiveAble
+     * @var iContext
      */
     protected $context;
 
@@ -52,39 +45,16 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
     protected $value;
 
     /**
-     * Text description of apache directive
-     * @var String
-     */
-    protected $description;
-
-    /**
-     * link to full description of apache directive
-     * @var String
-     */
-    protected $apacheDocLink = "/docs/2.4/mod/directives.html";
-
-    /**
-     * Example Apache directive syntax
-     * @var String
-     */
-    protected $syntax;
-
-    /**
-     * @var Boolean
-     */
-    protected $isSection = false;
-
-    /**
-     * @var iContextAble[]
+     * @var iDirective[]
      */
     protected $innerDirectives = null;
 
 
     /**
      * @param String $value
-     * @param iInnerDirectiveAble $context
+     * @param iContext $context
      */
-    public function __construct($value, $context)
+    public function __construct($value, iContext $context)
     {
         $this->setValue($value);
         $this->setContext($context);
@@ -105,7 +75,7 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
      */
     public function getModule()
     {
-        return $this->module;
+        return "abstract directive";
     }
 
     /**
@@ -116,6 +86,15 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
     {
         $classNameWithNamespace = get_class($this);
         return substr($classNameWithNamespace, strrpos($classNameWithNamespace, '\\')+1);
+    }
+
+    /**
+     * Name of Apache directive with full qualified namespace
+     * @return String
+     */
+    public static function getFullName()
+    {
+        return __CLASS__;
     }
 
     /**
@@ -147,7 +126,7 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
      */
     public function getSyntax()
     {
-        return $this->syntax;
+        return "abstract directive";
     }
 
     /**
@@ -156,7 +135,7 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
      */
     public function getDescription()
     {
-        return $this->description;
+        return "abstract directive";
     }
 
     /**
@@ -165,12 +144,12 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite.$this->apacheDocLink;
+        return $this->apacheSite."/docs/2.4/mod/directives.html";
     }
 
     /**
      * Current context of directive or root of file
-     * @return iContextAble
+     * @return iContext
      */
     public function getContext()
     {
@@ -178,12 +157,12 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
     }
 
     /**
-     * @param iInnerDirectiveAble $context
+     * @param iContext $context
      * @throws NotAllowedContextException
      */
-    public function setContext(iInnerDirectiveAble $context)
+    public function setContext(iContext $context)
     {
-        if(($context instanceof iInnerDirectiveAble) and ($context instanceof iType)) {
+        if(($context instanceof iContext)) {
             if($this->isAllowedContext($context)) {
                 $this->context = $context;
             } else {
@@ -209,11 +188,11 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
      */
     public function isSection()
     {
-        return $this->isSection;
+        return false;
     }
 
     /**
-     * add InnerDirective in iInnerDirectiveAble
+     * add InnerDirective in iContext
      * @param iDirective $directive
      * @throws NotAllowedContextException
      */
@@ -222,14 +201,11 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
         if(!$this->isSection()) {
             throw new NotAllowedContextException("You trying add directive as inner in non section directive");
         }
-        if(!($directive instanceof iContextAble)) {
-            throw new NotAllowedContextException("Inner directive  must be iContextAble");
-        }
 
         if($directive->getContext() !== $this->getContext()) {
             throw new NotAllowedContextException("trying add inner directive in {$this->getType()} with context of another directive");
         }
-        array_push($this->innerDirectives, $directive);
+        $this->innerDirectives[] = $directive;
     }
 
     /**
@@ -239,9 +215,6 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
      */
     public function detachInnerDirective(iDirective $directive)
     {
-        /**
-         * @var Directive $directive
-         */
         if($this !== $directive->getContext()) {
             throw new NotAllowedContextException("Trying to detach from {$this->getType()} directive {$directive->getContext()} which is not its context");
         }
@@ -255,28 +228,26 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
 
     /**
      * Iterate from iContextAble through it parents to the root
-     * @yield iInnerDirectiveAble
+     * @yield iContext
      */
     public function iterateParent()
     {
         $context = $this->getContext();
+        yield $context;
+
         if($context instanceof iContextAble) {
-            yield $context;
             $context->iterateParent();
         }
     }
 
     /**
-     * iterate throw all children of iInnerDirectiveAble
-     * @yield iContextAble
+     * iterate throw all children of iDirective
+     * @yield iDirective
      */
     public function iterateChildren()
     {
         if($this->isSection()) {
             foreach($this->getInnerDirectives() as $directive) {
-                /**
-                 * @var Directive $directive
-                 */
                 yield $directive;
                 $directive->iterateChildren();
             }
@@ -286,8 +257,6 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
     /**
      * Return object of absolute path to this iContextAble directive
      * @return iDirectivePath
-     *
-     * TODO Its bad, that Directive knows about inner format of DirectivePath
      */
     public function getPath()
     {
@@ -313,12 +282,12 @@ class Directive implements iDirective, iContextAble, iInnerDirectiveAble, iType,
 
     /**
      * Check current directive context on allowed (in what context this directive can be placed)
-     * @param Directive $context
+     * @param iContext $context
      * @return bool
      */
-    protected function isAllowedContext(Directive $context)
+    protected function isAllowedContext(iContext $context)
     {
-        if($context->className() == Unknown::className()) {
+        if($context->getFullName() == Unknown::getFullName()) {
             return true;
         }
 

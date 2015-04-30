@@ -9,7 +9,7 @@
 namespace LTDBeget\ApacheConfigurator\Interfaces;
 
 
-interface iDirective
+interface iDirective extends iContext, iContextAble
 {
     /**
      * the source module which defines the directive
@@ -26,7 +26,7 @@ interface iDirective
     /**
      * set value for directive
      * @param String $value
-     * @return mixed
+     * @return void
      */
     public function setValue($value);
 

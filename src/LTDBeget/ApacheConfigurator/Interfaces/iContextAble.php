@@ -9,16 +9,16 @@
 namespace LTDBeget\ApacheConfigurator\Interfaces;
 
 
-interface iContextAble {
+interface iContextAble extends iType {
     /**
      * Current context of directive or root of file
-     * @return iInnerDirectiveAble
+     * @return iContext
      */
     public function getContext();
 
     /**
      * Iterate from iContextAble through it parents to the root
-     * @yield iInnerDirectiveAble
+     * @yield iContext
      */
     public function iterateParent();
 

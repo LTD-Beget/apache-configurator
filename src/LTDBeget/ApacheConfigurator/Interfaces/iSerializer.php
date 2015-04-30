@@ -9,46 +9,19 @@
 namespace LTDBeget\ApacheConfigurator\Interfaces;
 
 
-use LTDBeget\ApacheConfigurator\ConfigurationFile;
-
 interface iSerializer
 {
     /**
-     * @param String $fileType
-     * @param String $configuration
-     * @return ConfigurationFile
+     *
+     * @param iConfigurationFile $configurationFile
+     * @return array|string
      */
-    public static function fromJson($fileType, $configuration);
-
-    /**
-     * @param ConfigurationFile $configurationFile
-     * @return String
-     */
-    public static function toJson(ConfigurationFile $configurationFile);
+    public static function serialize(iConfigurationFile $configurationFile);
 
     /**
      * @param String $fileType
-     * @param Array $configuration
-     * @return ConfigurationFile
+     * @param String|array $configuration
+     * @return iConfigurationFile
      */
-    public static function fromArray($fileType, array $configuration);
-
-    /**
-     * @param ConfigurationFile $configurationFile
-     * @return Array
-     */
-    public static function toArray(ConfigurationFile $configurationFile);
-
-    /**
-     * @param String $fileType
-     * @param String $configuration
-     * @return ConfigurationFile
-     */
-    public static function fromPlain($fileType, $configuration);
-
-    /**
-     * @param ConfigurationFile $configurationFile
-     * @return String
-     */
-    public static function toPlain(ConfigurationFile $configurationFile);
+    public static function deserialize($fileType, $configuration);
 }

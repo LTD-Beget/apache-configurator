@@ -9,7 +9,7 @@
 namespace LTDBeget\ApacheConfigurator\Interfaces;
 
 
-interface iConfigurationFile
+interface iConfigurationFile extends iContext
 {
     /**
      * @param iDirectivePath $directivePath
@@ -29,9 +29,4 @@ interface iConfigurationFile
      * @return void
      */
     public function removeDirective(iDirectivePath $directivePath);
-
-    /**
-     * @return string type of current configurationFile "serverConfig", "htaccess"
-     */
-    public function getFileType();
 }

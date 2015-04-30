@@ -11,7 +11,7 @@ namespace LTDBeget\ApacheConfigurator\Directives;
 
 use LTDBeget\ApacheConfigurator\Exceptions\NotAllowedContextException;
 use LTDBeget\ApacheConfigurator\Interfaces\iDirective;
-use LTDBeget\ApacheConfigurator\Interfaces\iInnerDirectiveAble;
+use LTDBeget\ApacheConfigurator\Interfaces\iContext;
 
 class Unknown extends Directive
 {
@@ -38,11 +38,13 @@ class Unknown extends Directive
      */
     protected $type;
 
+    protected $isSection = false;
+
     /**
      * @param String $type
      * @param String $value
      * @param Boolean $isSection
-     * @param iInnerDirectiveAble $context
+     * @param iContext $context
      * @throws \LTDBeget\ApacheConfigurator\Exceptions\NotAllowedContextException
      * @throws \LTDBeget\ApacheConfigurator\Exceptions\NotAllowedValueException
      */
@@ -57,9 +59,49 @@ class Unknown extends Directive
         $this->setContext($context);
     }
 
+    /**
+     * Name of Apache directive
+     * @return String
+     */
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * the source module which defines the directive
+     * @return String
+     */
+    public function getModule()
+    {
+        return 'unknown';
+    }
+
+    /**
+     * Return text description of apache directive
+     * @return String
+     */
+    public function getDescription()
+    {
+        return 'unknown';
+    }
+
+    /**
+     * Return Apache directive Syntax
+     * @return String
+     */
+    public function getSyntax()
+    {
+        return 'unknown';
+    }
+
+    /**
+     * is this directive can include inner directives
+     * @return boolean
+     */
+    public function isSection()
+    {
+        return $this->isSection();
     }
 
     /**

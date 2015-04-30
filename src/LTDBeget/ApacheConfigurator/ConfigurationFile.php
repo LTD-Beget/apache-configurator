@@ -9,20 +9,16 @@
 namespace LTDBeget\ApacheConfigurator;
 
 
-use LTDBeget\ApacheConfigurator\Directives\Directive;
 use LTDBeget\ApacheConfigurator\Directives\Unknown;
 use LTDBeget\ApacheConfigurator\Exceptions\NotAllowedContextException;
 use LTDBeget\ApacheConfigurator\Exceptions\NotFoundDirectiveException;
 use LTDBeget\ApacheConfigurator\Exceptions\NotFoundFileTypeException;
-use LTDBeget\ApacheConfigurator\Interfaces\iClass;
 use LTDBeget\ApacheConfigurator\Interfaces\iConfigurationFile;
 use LTDBeget\ApacheConfigurator\Interfaces\iDirective;
 use LTDBeget\ApacheConfigurator\Interfaces\iDirectivePath;
-use LTDBeget\ApacheConfigurator\Interfaces\iInnerDirectiveAble;
-use LTDBeget\ApacheConfigurator\Interfaces\iType;
 use LTDBeget\ApacheConfigurator\Directives\Available;
 
-class ConfigurationFile implements iConfigurationFile, iInnerDirectiveAble, iType, iClass
+class ConfigurationFile implements iConfigurationFile
 {
     const SERVER_CONFIG = 'serverConfig';
     const HTACCESS      = "htaccess";
@@ -36,7 +32,7 @@ class ConfigurationFile implements iConfigurationFile, iInnerDirectiveAble, iTyp
     protected $innerDirectives = [];
 
 
-    function __construct($fileType)
+    public function __construct($fileType)
     {
         if(!in_array($fileType, [ConfigurationFile::SERVER_CONFIG, ConfigurationFile::HTACCESS])) {
             throw new NotFoundFileTypeException("$fileType is not allowed file type for apache config file");
@@ -46,7 +42,7 @@ class ConfigurationFile implements iConfigurationFile, iInnerDirectiveAble, iTyp
 
     /**
      * @param iDirectivePath $directivePath
-     * @return Directive
+     * @return iDirective
      */
     public function addDirective(iDirectivePath $directivePath)
     {
@@ -89,19 +85,26 @@ class ConfigurationFile implements iConfigurationFile, iInnerDirectiveAble, iTyp
     public function removeDirective(iDirectivePath $directivePath)
     {
         $directive = $this->findByPath($directivePath, true);
-        /**
-         * @var Directive $context
-         */
         $context = $directive->getContext();
         $context->detachInnerDirective($directive);
     }
 
     /**
-     * @return string type of current configurationFile "serverConfig", "htaccess"
+     * string type of current configurationFile "serverConfig", "htaccess"
+     * @return String
      */
-    public function getFileType()
+    public function getType()
     {
         return $this->fileType;
+    }
+
+    /**
+     * Full name of ConfigurationFile
+     * @return String
+     */
+    public static function getFullName()
+    {
+        return __CLASS__;
     }
 
     /**
@@ -115,14 +118,11 @@ class ConfigurationFile implements iConfigurationFile, iInnerDirectiveAble, iTyp
 
     /**
      * iterate throw all children of iInnerDirectiveAble
-     * @yield iContextAble
+     * @yield iDirective
      */
     public function iterateChildren()
     {
         foreach($this->getInnerDirectives() as $directive) {
-            /**
-             * @var Directive $directive
-             */
             yield $directive;
             $directive->iterateChildren();
         }
@@ -133,10 +133,15 @@ class ConfigurationFile implements iConfigurationFile, iInnerDirectiveAble, iTyp
      * add InnerDirective in iInnerDirectiveAble
      * @param iDirective $directive
      * @return mixed
+     * @throws NotAllowedContextException
      */
     public function appendInnedDirective(iDirective $directive)
     {
-        array_push($this->innerDirectives, $directive);
+        if($this !== $directive->getContext()) {
+            throw new NotAllowedContextException("Trying to append to {$this->getType()} directive {$directive->getContext()} which is not its context");
+        }
+
+        $this->innerDirectives[] = $directive;
     }
 
     /**
@@ -146,9 +151,6 @@ class ConfigurationFile implements iConfigurationFile, iInnerDirectiveAble, iTyp
      */
     public function detachInnerDirective(iDirective $directive)
     {
-        /**
-         * @var Directive $directive
-         */
         if($this !== $directive->getContext()) {
             throw new NotAllowedContextException("Trying to detach from {$this->getType()} directive {$directive->getContext()} which is not its context");
         }
@@ -160,37 +162,16 @@ class ConfigurationFile implements iConfigurationFile, iInnerDirectiveAble, iTyp
         }
     }
 
-    /**
-     * Name of Apache directive or file type
-     * @return String
-     */
-    public function getType()
-    {
-        return $this->fileType;
-    }
-
-    /**
-     * className
-     * @return String
-     */
-    public static function className()
-    {
-        return __CLASS__;
-    }
-
 
     /**
      * @param iDirectivePath $directivePath
      * @param bool $throwException
-     * @return Directive|null
+     * @return iDirective|null
      * @throws NotFoundDirectiveException
      */
     protected function findByPath(iDirectivePath $directivePath, $throwException = false)
     {
         foreach($this->iterateChildren() as $directive) {
-            /**
-             * @var Directive $directive
-             */
             if($directivePath->comparePath($directive->getPath())) {
                 return $directive;
             }
