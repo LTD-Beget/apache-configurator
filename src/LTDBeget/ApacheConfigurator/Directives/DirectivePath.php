@@ -27,11 +27,12 @@ class DirectivePath implements iDirectivePath
      */
     function __construct($path)
     {
-        if($this->isJson($path)) {
-            $path = json_decode($path, true);
-        }
-        $this->checkFormat($path);
+//        if($this->isJson($path)) {
+//            $path = json_decode($path, true);
+//        }
         $this->path = $path;
+        $this->checkFormat($path);
+
     }
 
     /**
@@ -52,10 +53,11 @@ class DirectivePath implements iDirectivePath
     public function getDirectiveType()
     {
         $path = $this->getPath();
-        $directive = $path["directive"];
+        $directive = !$this->isRoot()?$path["directive"]:"root";
+
         while(isset($path["innerDirective"]) and is_array($path["innerDirective"]) and count($path["innerDirective"])) {
-            $directive = $path["directive"];
             $path = $path["innerDirective"];
+            $directive = $path["directive"];
         }
         return $directive;
     }
@@ -67,10 +69,11 @@ class DirectivePath implements iDirectivePath
     public function getDirectiveValue()
     {
         $path = $this->getPath();
-        $value = $path["value"];
+        $value = !$this->isRoot()?$path["value"]:"";
+
         while(isset($path["innerDirective"]) and is_array($path["innerDirective"]) and count($path["innerDirective"])) {
-            $value = $path["value"];
             $path = $path["innerDirective"];
+            $value = $path["value"];
         }
         return $value;
     }
@@ -88,6 +91,7 @@ class DirectivePath implements iDirectivePath
             unset($parentPath["innerDirective"]);
             $path = $path["innerDirective"];
         }
+
         return new DirectivePath($parentPath);
     }
 
@@ -97,7 +101,7 @@ class DirectivePath implements iDirectivePath
      */
     public function isRoot()
     {
-        return $this->path == [];
+        return count($this->path) == 0;
     }
 
     /**
@@ -107,7 +111,12 @@ class DirectivePath implements iDirectivePath
      */
     public function comparePath(iDirectivePath $directivePath)
     {
-        return $this->isEqualPath($this->getPath(), $directivePath->getPath());
+        if($this->isRoot() and $directivePath->isRoot()) {
+            return true;
+        }
+
+        $result = $this->isEqualPath($this->getPath(), $directivePath->getPath());
+        return $result;
     }
 
     /**
@@ -118,10 +127,6 @@ class DirectivePath implements iDirectivePath
      */
     protected function isEqualPath($standardPath, $comparablePath)
     {
-        if($standardPath == [] and $comparablePath == []) {
-            return true;
-        }
-
         if($standardPath["directive"] !== $comparablePath["directive"]) {
             return false;
         }
@@ -153,17 +158,20 @@ class DirectivePath implements iDirectivePath
     {
         if($directive != []) {
             if(!isset($directive["directive"])) {
-                throw new WrongDirectivePathFormat("For all directives in DirectivePath need to define directive value");
+                throw new WrongDirectivePathFormat("For all directives in DirectivePath need to define directive name");
             }
 
             if(!isset($directive["value"])) {
                 throw new WrongDirectivePathFormat("For all directives in DirectivePath need to define directive value");
             }
 
-            if(isset($directive["innerDirective"]) and !is_array($directive["innerDirective"])) {
-                throw new WrongDirectivePathFormat("If isset inner directives, it need to be array");
-            } else {
-                $this->checkFormat($directive["innerDirective"]);
+            if(isset($directive["innerDirective"])) {
+                if(is_array($directive["innerDirective"])) {
+                    $this->checkFormat($directive["innerDirective"]);
+                } else {
+                    throw new WrongDirectivePathFormat("If isset inner directives, it need to be array");
+                }
+
             }
         }
     }

@@ -202,7 +202,7 @@ class Directive implements iDirective
             throw new NotAllowedContextException("You trying add directive as inner in non section directive");
         }
 
-        if($directive->getContext() !== $this->getContext()) {
+        if($directive->getContext() !== $this) {
             throw new NotAllowedContextException("trying add inner directive in {$this->getType()} with context of another directive");
         }
         $this->innerDirectives[] = $directive;
@@ -243,14 +243,16 @@ class Directive implements iDirective
     /**
      * iterate throw all children of iDirective
      * @yield iDirective
+     * @return iDirective[]
      */
     public function iterateChildren()
     {
         if($this->isSection()) {
             foreach($this->getInnerDirectives() as $directive) {
                 yield $directive;
-                $directive->iterateChildren();
             }
+        } else {
+            yield $this;
         }
     }
 
@@ -265,8 +267,9 @@ class Directive implements iDirective
             "directive" => $this->getType(),
             "value"     => $this->getValue()
         ];
-        $finalPath = null;
+        $finalPath = [];
         foreach($this->iterateParent() as $directive) {
+
             if($directive instanceof Directive) {
                 $finalPath = [
                     "directive"      => $directive->getType(),
@@ -276,8 +279,9 @@ class Directive implements iDirective
                 $path = $finalPath;
             }
         }
-        $path = is_null($finalPath)?$finalPath:$path;
-        return new DirectivePath($path);
+        $finalPath = $finalPath == []?$path:$finalPath;
+
+        return new DirectivePath($finalPath);
     }
 
     /**

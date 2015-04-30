@@ -35,6 +35,7 @@ class ArraySerializer implements iSerializer {
     {
         $configurationFile = new ConfigurationFile($fileType);
         $paths = self::explodeOnPath($configuration);
+
         foreach($paths as $path) {
             $configurationFile->addDirective($path);
         }
@@ -45,19 +46,33 @@ class ArraySerializer implements iSerializer {
      * Explode array of Right type on plain array of path
      * @param array $directives
      * @param array $paths
+     * @param null $contextPath
      * @return array
      */
-    protected static function explodeOnPath(array $directives, &$paths = [])
+    protected static function explodeOnPath(array $directives, &$paths = [], $contextPath = null)
     {
         foreach($directives as $directive) {
             if(isset($directive["innerDirective"]) and is_array($directive["innerDirective"]) and count($directive["innerDirective"])) {
-                self::explodeOnPath($directive["innerDirective"], $paths);
+                $contextPath = [
+                    "directive"      => $directive["directive"],
+                    "value"          => $directive["value"],
+                    "innerDirective" => []
+                ];
+
+                self::explodeOnPath($directive["innerDirective"], $paths, $contextPath);
             } else {
-                unset($directive["innerDirective"]);
-                $path = new DirectivePath($directive);
+                if(is_null($contextPath)) {
+                    unset($directive["innerDirective"]);
+                    $path = new DirectivePath($directive);
+                } else {
+                    $contextPath["innerDirective"] = $directive;
+                    $path = new DirectivePath($contextPath);
+                }
+
                 $paths[] = $path;
             }
         }
+
         return $paths;
     }
 }

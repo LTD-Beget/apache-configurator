@@ -13,10 +13,10 @@ use LTDBeget\ApacheConfigurator\Directives\Unknown;
 use LTDBeget\ApacheConfigurator\Exceptions\NotAllowedContextException;
 use LTDBeget\ApacheConfigurator\Exceptions\NotFoundDirectiveException;
 use LTDBeget\ApacheConfigurator\Exceptions\NotFoundFileTypeException;
+use LTDBeget\ApacheConfigurator\Exceptions\WrongDirectivePathFormat;
 use LTDBeget\ApacheConfigurator\Interfaces\iConfigurationFile;
 use LTDBeget\ApacheConfigurator\Interfaces\iDirective;
 use LTDBeget\ApacheConfigurator\Interfaces\iDirectivePath;
-use LTDBeget\ApacheConfigurator\Directives\Available;
 
 class ConfigurationFile implements iConfigurationFile
 {
@@ -46,8 +46,11 @@ class ConfigurationFile implements iConfigurationFile
      */
     public function addDirective(iDirectivePath $directivePath)
     {
+        if($this->findByPath($directivePath)) {
+            throw new WrongDirectivePathFormat("Directive already exists by path: ".json_encode($directivePath->getPath()));
+        }
         if($directivePath->isRoot()) {
-            $context = $this;
+            return $this;
         } else {
             $context = $this->findByPath($directivePath->getParentPath());
         }
@@ -56,12 +59,13 @@ class ConfigurationFile implements iConfigurationFile
             $context = $this->addDirective($directivePath->getParentPath());
         }
 
-        $className = "Available\\".$directivePath->getDirectiveType();
+        $className = "LTDBeget\\ApacheConfigurator\\Directives\\Available\\".$directivePath->getDirectiveType();
         if(class_exists($className)) {
             $directive = new $className($directivePath->getDirectiveValue(), $context);
         } else {
             $directive = new Unknown($directivePath->getDirectiveType(), $directivePath->getDirectiveValue(), false, $context);
         }
+
         $context->appendInnedDirective($directive);
         return $directive;
     }
@@ -119,12 +123,18 @@ class ConfigurationFile implements iConfigurationFile
     /**
      * iterate throw all children of iInnerDirectiveAble
      * @yield iDirective
+     * @return iDirective[]
      */
     public function iterateChildren()
     {
         foreach($this->getInnerDirectives() as $directive) {
-            yield $directive;
-            $directive->iterateChildren();
+            if($directive->isSection()) {
+                foreach($directive->iterateChildren() as $innerDirective) {
+                    yield $innerDirective;
+                }
+            } else {
+                yield $directive;
+            }
         }
     }
 
@@ -169,8 +179,12 @@ class ConfigurationFile implements iConfigurationFile
      * @return iDirective|null
      * @throws NotFoundDirectiveException
      */
-    protected function findByPath(iDirectivePath $directivePath, $throwException = false)
+    public function findByPath(iDirectivePath $directivePath, $throwException = false)
     {
+        if($directivePath->isRoot()) {
+            return $this;
+        }
+
         foreach($this->iterateChildren() as $directive) {
             if($directivePath->comparePath($directive->getPath())) {
                 return $directive;
