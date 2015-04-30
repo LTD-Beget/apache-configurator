@@ -101,7 +101,7 @@ class Unknown extends Directive
      */
     public function isSection()
     {
-        return $this->isSection();
+        return $this->isSection;
     }
 
     /**
