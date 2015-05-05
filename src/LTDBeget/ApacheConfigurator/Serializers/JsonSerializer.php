@@ -12,7 +12,8 @@ namespace LTDBeget\ApacheConfigurator\Serializers;
 use LTDBeget\ApacheConfigurator\Interfaces\iConfigurationFile;
 use LTDBeget\ApacheConfigurator\Interfaces\iSerializer;
 
-class JsonSerializer implements iSerializer {
+class JsonSerializer implements iSerializer
+{
 
     /**
      *
@@ -21,7 +22,7 @@ class JsonSerializer implements iSerializer {
      */
     public static function serialize(iConfigurationFile $configurationFile)
     {
-        return json_decode(ArraySerializer::serialize($configurationFile));
+        return json_encode(ArraySerializer::serialize($configurationFile));
     }
 
     /**

@@ -12,18 +12,44 @@ namespace LTDBeget\ApacheConfigurator\Serializers;
 use LTDBeget\ApacheConfigurator\ConfigurationFile;
 use LTDBeget\ApacheConfigurator\Directives\DirectivePath;
 use LTDBeget\ApacheConfigurator\Interfaces\iConfigurationFile;
+use LTDBeget\ApacheConfigurator\Interfaces\iDirective;
 use LTDBeget\ApacheConfigurator\Interfaces\iSerializer;
 
-class ArraySerializer implements iSerializer {
+class ArraySerializer implements iSerializer
+{
+    protected static $instance = null;
+
+    protected function __construct() {}
+
+    protected function __clone() {}
 
     /**
-     *
+     * singleton getter
+     * @return ArraySerializer
+     */
+    static protected function getInstance()
+    {
+        if(is_null(self::$instance))
+        {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    /**
      * @param iConfigurationFile $configurationFile
      * @return array|string
      */
     public static function serialize(iConfigurationFile $configurationFile)
     {
-        // TODO: Implement serialize() method.
+        $configurationArray = [];
+
+        foreach($configurationFile->getInnerDirectives() as $directive) {
+            $configurationArray[] = self::getInstance()->directiveToArray($directive);
+        }
+
+        return $configurationArray;
     }
 
     /**
@@ -39,6 +65,7 @@ class ArraySerializer implements iSerializer {
         foreach($paths as $path) {
             $configurationFile->addDirective($path);
         }
+
         return $configurationFile;
     }
 
@@ -74,5 +101,27 @@ class ArraySerializer implements iSerializer {
         }
 
         return $paths;
+    }
+
+    /**
+     * converts directive object to array with its inner directives as array too
+     * @param iDirective $directive
+     * @return array
+     */
+    protected function directiveToArray(iDirective $directive)
+    {
+        $directiveArray = [
+            "directive" => $directive->getType(),
+            "value"     => $directive->getValue()
+        ];
+
+        if($directive->isSection()) {
+            $directiveArray["innerDirective"] = [];
+            foreach($directive->getInnerDirectives() as $innerDirective) {
+                $directiveArray["innerDirective"][] = self::getInstance()->directiveToArray($innerDirective);
+            }
+        }
+
+        return $directiveArray;
     }
 }
