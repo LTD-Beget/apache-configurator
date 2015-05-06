@@ -40,6 +40,8 @@ class Unknown extends Directive
 
     protected $isSection = false;
 
+    protected $innerDirectives = [];
+
     /**
      * @param String $type
      * @param String $value
@@ -53,9 +55,6 @@ class Unknown extends Directive
         $this->type = $type;
         $this->setValue($value);
         $this->isSection = $isSection;
-        if($this->isSection()) {
-            $this->innerDirectives = [];
-        }
         $this->setContext($context);
     }
 
@@ -101,7 +100,7 @@ class Unknown extends Directive
      */
     public function isSection()
     {
-        return $this->isSection;
+        return count($this->getInnerDirectives()) > 0;
     }
 
     /**
@@ -111,11 +110,19 @@ class Unknown extends Directive
      */
     public function appendInnedDirective(iDirective $directive)
     {
-        if(!$this->isSection()) {
-            $this->isSection = true;
-            $this->innerDirectives = [];
+        if($directive->getContext() !== $this) {
+            throw new NotAllowedContextException("trying add inner directive in {$this->getType()} with context of another directive");
         }
-        parent::appendInnedDirective($directive);
+        $this->innerDirectives[] = $directive;
+    }
+
+    /**
+     * return all innerDirectives
+     * @return iDirective[]
+     */
+    public function getInnerDirectives()
+    {
+        return $this->innerDirectives;
     }
 
 }

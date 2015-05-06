@@ -232,11 +232,10 @@ class Directive implements iDirective
      */
     public function iterateParent()
     {
-        $context = $this->getContext();
-        yield $context;
-
-        if($context instanceof iContextAble) {
-            $context->iterateParent();
+        $context = $this;
+        while($context instanceof iContextAble) {
+            $context = $context->getContext();
+            yield $context;
         }
     }
 
@@ -247,12 +246,13 @@ class Directive implements iDirective
      */
     public function iterateChildren()
     {
+        yield $this;
         if($this->isSection()) {
             foreach($this->getInnerDirectives() as $directive) {
-                yield $directive;
+                foreach($directive->iterateChildren() as $innerDirective) {
+                    yield $innerDirective;
+                }
             }
-        } else {
-            yield $this;
         }
     }
 
@@ -269,7 +269,6 @@ class Directive implements iDirective
         ];
         $finalPath = [];
         foreach($this->iterateParent() as $directive) {
-
             if($directive instanceof Directive) {
                 $finalPath = [
                     "directive"      => $directive->getType(),
