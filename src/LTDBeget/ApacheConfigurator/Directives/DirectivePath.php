@@ -27,9 +27,6 @@ class DirectivePath implements iDirectivePath
      */
     function __construct($path)
     {
-//        if($this->isJson($path)) {
-//            $path = json_decode($path, true);
-//        }
         $this->path = $path;
         $this->checkFormat($path);
 
@@ -85,14 +82,35 @@ class DirectivePath implements iDirectivePath
     public function getParentPath()
     {
         $path = $this->getPath();
-        $parentPath = [];
-        while(isset($path["innerDirective"]) and is_array($path["innerDirective"]) and count($path["innerDirective"])) {
-            $parentPath = $path;
-            unset($parentPath["innerDirective"]);
-            $path = $path["innerDirective"];
-        }
+        $root = [];
 
-        return new DirectivePath($parentPath);
+        return new DirectivePath($this->makeParentPath($path, $root));
+    }
+
+    /**
+     * @param $path
+     * @param $previous
+     * @return mixed
+     */
+    protected function makeParentPath(&$path, &$previous)
+    {
+        if($this->isLastDirectiveInPath($path)) {
+            unset($previous["innerDirective"]);
+            return $previous;
+        } else {
+            $this->makeParentPath($path["innerDirective"], $path);
+        }
+        return $path;
+    }
+
+
+    /**
+     * @param Array $directive
+     * @return bool
+     */
+    protected function isLastDirectiveInPath($directive)
+    {
+        return !(isset($directive["innerDirective"]) and is_array($directive["innerDirective"]) and count($directive["innerDirective"]));
     }
 
     /**
@@ -111,39 +129,19 @@ class DirectivePath implements iDirectivePath
      */
     public function comparePath(iDirectivePath $directivePath)
     {
-        if($this->isRoot() and $directivePath->isRoot()) {
-            return true;
-        }
+        return $this->getArrayHash($this->getPath()) == $this->getArrayHash($directivePath->getPath());
 
-        $result = $this->isEqualPath($this->getPath(), $directivePath->getPath());
-        return $result;
     }
 
     /**
-     * Is two path equal in iDirectivePath format
-     * @param $standardPath
-     * @param $comparablePath
-     * @return bool
+     * Make hash of array for compare
+     * @param $array
+     * @return string
      */
-    protected function isEqualPath($standardPath, $comparablePath)
+    protected function getArrayHash($array)
     {
-        if($standardPath["directive"] !== $comparablePath["directive"]) {
-            return false;
-        }
-
-        if($standardPath["value"] !== $comparablePath["value"]) {
-            return false;
-        }
-
-        if(isset($standardPath["innerDirective"])) {
-            if(isset($comparablePath["innerDirective"])) {
-                return $this->isEqualPath($standardPath["innerDirective"], $comparablePath["innerDirective"]);
-            } else {
-                return false;
-            }
-        } else {
-            return true;
-        }
+        array_multisort($array);
+        return md5(serialize($array));
     }
 
     /**
@@ -174,16 +172,5 @@ class DirectivePath implements iDirectivePath
 
             }
         }
-    }
-
-    /**
-     * is Json string
-     * @param String $string
-     * @return bool
-     */
-    protected function isJson($string)
-    {
-        json_decode($string);
-        return (json_last_error() == JSON_ERROR_NONE);
     }
 }

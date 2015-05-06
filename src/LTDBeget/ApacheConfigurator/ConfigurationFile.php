@@ -9,6 +9,7 @@
 namespace LTDBeget\ApacheConfigurator;
 
 
+use LTDBeget\ApacheConfigurator\Directives\DirectivePath;
 use LTDBeget\ApacheConfigurator\Directives\Unknown;
 use LTDBeget\ApacheConfigurator\Exceptions\NotAllowedContextException;
 use LTDBeget\ApacheConfigurator\Exceptions\NotFoundDirectiveException;
@@ -37,18 +38,22 @@ class ConfigurationFile implements iConfigurationFile
         if(!in_array($fileType, [ConfigurationFile::SERVER_CONFIG, ConfigurationFile::HTACCESS])) {
             throw new NotFoundFileTypeException("$fileType is not allowed file type for apache config file");
         }
+
         $this->fileType = $fileType;
     }
 
     /**
      * @param iDirectivePath $directivePath
      * @return iDirective
+     * @throws NotFoundDirectiveException
+     * @throws WrongDirectivePathFormat
      */
     public function addDirective(iDirectivePath $directivePath)
     {
         if($this->findByPath($directivePath)) {
             throw new WrongDirectivePathFormat("Directive already exists by path: ".json_encode($directivePath->getPath()));
         }
+
         if($directivePath->isRoot()) {
             return $this;
         } else {
@@ -128,12 +133,8 @@ class ConfigurationFile implements iConfigurationFile
     public function iterateChildren()
     {
         foreach($this->getInnerDirectives() as $directive) {
-            if($directive->isSection()) {
-                foreach($directive->iterateChildren() as $innerDirective) {
-                    yield $innerDirective;
-                }
-            } else {
-                yield $directive;
+            foreach($directive->iterateChildren() as $innerDirective) {
+                yield $innerDirective;
             }
         }
     }
@@ -181,19 +182,25 @@ class ConfigurationFile implements iConfigurationFile
      */
     public function findByPath(iDirectivePath $directivePath, $throwException = false)
     {
-        if($directivePath->isRoot()) {
-            return $this;
-        }
-
-        foreach($this->iterateChildren() as $directive) {
-            if($directivePath->comparePath($directive->getPath())) {
+        foreach ($this->iterateChildren() as $directive) {
+            if ($directivePath->comparePath($directive->getPath())) {
                 return $directive;
             }
         }
-        if($throwException) {
+
+        if ($throwException) {
             $path = json_encode($directivePath->getPath());
             throw new NotFoundDirectiveException("Directive by path does not exist: $path");
         }
         return null;
+    }
+
+    /**
+     * Return path of root file
+     * @return iDirectivePath
+     */
+    public function getPath()
+    {
+        return new DirectivePath([]);
     }
 }

@@ -60,47 +60,69 @@ class ArraySerializer implements iSerializer
     public static function deserialize($fileType, $configuration)
     {
         $configurationFile = new ConfigurationFile($fileType);
-        $paths = self::explodeOnPath($configuration);
 
-        foreach($paths as $path) {
-            $configurationFile->addDirective($path);
+        $leafs = self::getInstance()->explodeOnLeafs($configuration);
+        $paths = self::getInstance()->explodeOnPath($leafs);
+
+        foreach($paths as $key => $path) {
+            $configurationFile->addDirective(new DirectivePath($path));
         }
 
         return $configurationFile;
     }
 
     /**
-     * Explode array of Right type on plain array of path
-     * @param array $directives
      * @param array $paths
-     * @param null $contextPath
      * @return array
      */
-    protected static function explodeOnPath(array $directives, &$paths = [], $contextPath = null)
+    protected function explodeOnPath(array $paths)
     {
-        foreach($directives as $directive) {
-            if(isset($directive["innerDirective"]) and is_array($directive["innerDirective"]) and count($directive["innerDirective"])) {
-                $contextPath = [
-                    "directive"      => $directive["directive"],
-                    "value"          => $directive["value"],
-                    "innerDirective" => []
-                ];
-
-                self::explodeOnPath($directive["innerDirective"], $paths, $contextPath);
-            } else {
-                if(is_null($contextPath)) {
-                    unset($directive["innerDirective"]);
-                    $path = new DirectivePath($directive);
-                } else {
-                    $contextPath["innerDirective"] = $directive;
-                    $path = new DirectivePath($contextPath);
+        $formatPaths = [];
+        foreach($paths as $path) {
+            unset($innerDirective);
+            do {
+                if(!isset($innerDirective)) {
+                    $innerDirective = [
+                        "directive"      => $path["directive"],
+                        "value"          => $path["value"]
+                    ];
                 }
 
-                $paths[] = $path;
+                if(isset($path["parent"])) {
+                    $innerDirective = [
+                        "directive"      => $path["parent"]["directive"],
+                        "value"          => $path["parent"]["value"],
+                        "innerDirective" => $innerDirective
+                    ];
+                    $path = $path["parent"];
+                }
+
+            } while(isset($path["parent"]));
+            $formatPaths[] = $innerDirective;
+        }
+
+        return $formatPaths;
+    }
+
+    protected function explodeOnLeafs($directives, $parentKey = null, &$paths = [])
+    {
+        foreach($directives as $key => $directive) {
+            $childKey = is_null($parentKey)?$key:$parentKey.$key;
+            $path = [
+                "directive"      => $directive["directive"],
+                "value"          => $directive["value"]
+            ];
+            if(!is_null($parentKey)) {
+                $path["parent"] = $paths[$parentKey];
+            }
+            $paths[$childKey] = $path;
+            if(isset($directive["innerDirective"])) {
+                self::explodeOnLeafs($directive["innerDirective"], $childKey, $paths);
             }
         }
 
         return $paths;
+
     }
 
     /**
