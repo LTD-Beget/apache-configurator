@@ -12,21 +12,16 @@ namespace LTDBeget\apacheConfigurator\interfaces;
 interface iConfigurationFile extends iContext
 {
     /**
-     * @param iDirectivePath $directivePath
-     * @return void
+     * @param String $directiveName name of Apache directive
+     * @param String $value value of Apache directive
+     * @param iDirectivePath $contextPath path to context
+     * @return iDirective
      */
-    public function addDirective(iDirectivePath $directivePath);
+    public function addDirective($directiveName, $value, iDirectivePath $contextPath);
 
     /**
-     * @param iDirectivePath $directivePath
-     * @param String $value
+     * @param iDirective $directive
      * @return void
      */
-    public function changeDirective(iDirectivePath $directivePath, $value);
-
-    /**
-     * @param iDirectivePath $directivePath
-     * @return void
-     */
-    public function removeDirective(iDirectivePath $directivePath);
+    public function removeDirective(iDirective $directive);
 }

@@ -64,8 +64,18 @@ class ArraySerializer implements iSerializer
         $leafs = self::getInstance()->explodeOnLeafs($configuration);
         $paths = self::getInstance()->explodeOnPath($leafs);
 
+
         foreach($paths as $key => $path) {
-            $configurationFile->addDirective(new DirectivePath($path));
+            $fullPath = new DirectivePath($path);
+//            print_r($fullPath);
+//            $parent = $fullPath->getParentPath();
+//            $likeFull = $parent->makeChildDirectivePath($fullPath->getDirectiveType(), $fullPath->getDirectiveValue());
+//            print_r($likeFull);
+//            echo "compareresult = ".$fullPath->comparePath($likeFull)."\n";
+//            echo $fullPath->getDirectiveType()."\n";
+//            echo $fullPath->getDirectiveValue()."\n";
+//            print_r($fullPath->getParentPath()->getPath());
+            $configurationFile->addDirective($fullPath->getDirectiveType(), $fullPath->getDirectiveValue(), $fullPath->getParentPath());
         }
 
         return $configurationFile;

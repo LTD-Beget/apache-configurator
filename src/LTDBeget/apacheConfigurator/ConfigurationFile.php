@@ -43,25 +43,21 @@ class ConfigurationFile implements iConfigurationFile
     }
 
     /**
-     * @param iDirectivePath $directivePath
-     * @return iDirective
+     * @param String $directiveName name of Apache directive
+     * @param String $value value of Apache directive
+     * @param iDirectivePath $contextPath path to context
      * @throws NotFoundDirectiveException
      * @throws WrongDirectivePathFormat
+     * @return iDirective
      */
-    public function addDirective(iDirectivePath $directivePath)
+    public function addDirective($directiveName, $value, iDirectivePath $contextPath = null)
     {
+        $context = $this->getContextByPath($contextPath);
+
+        $directivePath = $context->getPath()->makeChildDirectivePath($directiveName, $value);
+
         if($this->findByPath($directivePath)) {
             throw new WrongDirectivePathFormat("Directive already exists by path: ".json_encode($directivePath->getPath()));
-        }
-
-        if($directivePath->isRoot()) {
-            return $this;
-        } else {
-            $context = $this->findByPath($directivePath->getParentPath());
-        }
-
-        if(is_null($context)) {
-            $context = $this->addDirective($directivePath->getParentPath());
         }
 
         $className = "LTDBeget\\apacheConfigurator\\directives\\available\\".$directivePath->getDirectiveType();
@@ -72,28 +68,16 @@ class ConfigurationFile implements iConfigurationFile
         }
 
         $context->appendInnedDirective($directive);
+
         return $directive;
     }
 
     /**
-     * @param iDirectivePath $directivePath
-     * @param String $value
-     * @throws Exceptions\NotAllowedValueException
-     * @throws NotFoundDirectiveException
+     * @param iDirective $directive
+     * @return void
      */
-    public function changeDirective(iDirectivePath $directivePath, $value)
+    public function removeDirective(iDirective $directive)
     {
-        $this->findByPath($directivePath, true)->setValue($value);
-    }
-
-    /**
-     * @param iDirectivePath $directivePath
-     * @throws NotAllowedContextException
-     * @throws NotFoundDirectiveException
-     */
-    public function removeDirective(iDirectivePath $directivePath)
-    {
-        $directive = $this->findByPath($directivePath, true);
         $context = $directive->getContext();
         $context->detachInnerDirective($directive);
     }
@@ -202,5 +186,25 @@ class ConfigurationFile implements iConfigurationFile
     public function getPath()
     {
         return new DirectivePath([]);
+    }
+
+    /**
+     * @param iDirectivePath|null $contextPath
+     * @return ConfigurationFile|iDirective
+     * @throws NotFoundDirectiveException
+     * @throws WrongDirectivePathFormat
+     */
+    protected function getContextByPath(iDirectivePath $contextPath)
+    {
+        if(is_null($contextPath) or $contextPath->isRoot()) {
+            $context = $this;
+        } else {
+            $context = $this->findByPath($contextPath);
+            if(is_null($context)) {
+                $context = $this->addDirective($contextPath->getDirectiveType(), $contextPath->getDirectiveValue(), $contextPath->getParentPath());
+            }
+        }
+
+        return $context;
     }
 }

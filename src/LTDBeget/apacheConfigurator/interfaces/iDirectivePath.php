@@ -49,4 +49,12 @@ interface iDirectivePath
      * @return boolean true if paths identical
      */
     public function comparePath(iDirectivePath $directivePath);
+
+    /**
+     * Make path from this path as context path and type and value as new directive value
+     * @param $type
+     * @param $value
+     * @return iDirectivePath
+     */
+    public function makeChildDirectivePath($type, $value);
 }
