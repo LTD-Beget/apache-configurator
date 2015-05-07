@@ -24,6 +24,8 @@ class ConfigurationFile implements iConfigurationFile
     const SERVER_CONFIG = 'serverConfig';
     const HTACCESS      = "htaccess";
 
+    static public $reservedWordDirectives = ["Else", "ElseIf", "If", "Include", "Require", "Use"];
+
     /**
      * type of current configurationFile "serverConfig", "htaccess"
      * @var String

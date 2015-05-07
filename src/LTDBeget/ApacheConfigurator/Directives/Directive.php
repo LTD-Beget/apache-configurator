@@ -18,6 +18,14 @@ use LTDBeget\ApacheConfigurator\Interfaces\iContext;
 
 class Directive implements iDirective
 {
+
+    /**
+     * Names of directives, which names are reserved words
+     * @var array
+     */
+    static public $reservedWordDirectivesFlagged = ["dElse", "dElseIf", "dIf", "dInclude", "dRequire", "dUse"];
+    static public $reservedWordDirectives = ["Else", "ElseIf", "If", "Include", "Require", "Use"];
+
     /**
      * Site of Apache full documentation
      * @var string
@@ -85,7 +93,25 @@ class Directive implements iDirective
     public function getType()
     {
         $classNameWithNamespace = get_class($this);
-        return substr($classNameWithNamespace, strrpos($classNameWithNamespace, '\\')+1);
+        $type = substr($classNameWithNamespace, strrpos($classNameWithNamespace, '\\')+1);
+        $type = self::reservedWordFlagRemover($type);
+        return $type;
+    }
+
+    public static function reservedWordFlagRemover($type)
+    {
+        if(in_array($type, Directive::$reservedWordDirectivesFlagged)) {
+            $type = substr($type, 1, strlen($type)-1);
+        }
+        return $type;
+    }
+
+    public static function reservedWordFlagAdder($type)
+    {
+        if(in_array($type, Directive::$reservedWordDirectives)) {
+            $type = "d".$type;
+        }
+        return $type;
     }
 
     /**
