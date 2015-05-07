@@ -1,8 +1,9 @@
 <?php
 /**
+ * Automatically generated
+ *
  * @author: Viskov Sergey
- * @date: 28.04.15
- * @time: 18:43
+ * @date: 07.05.15
  */
 
 
@@ -71,8 +72,8 @@ class Directory extends Directive
     protected function setAllowedContext()
     {
         $this->allowedContext = [
+            ConfigurationFile::SERVER_CONFIG,
             VirtualHost::getFullName(),
-            ConfigurationFile::SERVER_CONFIG
         ];
     }
 }

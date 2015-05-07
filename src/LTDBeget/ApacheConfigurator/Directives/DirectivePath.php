@@ -56,6 +56,9 @@ class DirectivePath implements iDirectivePath
             $path = $path["innerDirective"];
             $directive = $path["directive"];
         }
+
+        $directive = Directive::reservedWordFlagAdder($directive);
+
         return $directive;
     }
 

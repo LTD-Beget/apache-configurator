@@ -1,0 +1,74 @@
+<?php
+/**
+ * Automatically generated
+ *
+ * @author: Viskov Sergey
+ * @date: 07.05.15
+ */
+
+
+namespace LTDBeget\ApacheConfigurator\Directives\Available;
+
+
+use LTDBeget\ApacheConfigurator\ConfigurationFile;
+use LTDBeget\ApacheConfigurator\Directives\Directive;
+
+class RequestReadTimeout extends Directive
+{
+    /**
+     * Return link to full description of apache directive
+     * @return String
+     */
+    public function getApacheDocLink()
+    {
+        return $this->apacheSite."/docs/2.4/mod/mod_reqtimeout.html#requestreadtimeout";
+    }
+
+    /**
+     * the source module which defines the directive
+     * @return String
+     */
+    public function getModule()
+    {
+        return "mod_reqtimeout";
+    }
+
+    /**
+     * Return text description of apache directive
+     * @return String
+     */
+    public function getDescription()
+    {
+        return "Set timeout values for receiving request headers and body from client.";
+    }
+
+    /**
+     * Return Apache directive Syntax
+     * @return String
+     */
+    public function getSyntax()
+    {
+        return 'RequestReadTimeout [header=timeout[-maxtimeout][,MinRate=rate] [body=timeout[-maxtimeout][,MinRate=rate]';
+    }
+
+    /**
+     * is this directive can include inner directives
+     * @return boolean
+     */
+    public function isSection()
+    {
+        return false;
+    }
+
+    /**
+     * Set allowed context of concrete directive
+     */
+    protected function setAllowedContext()
+    {
+        $this->allowedContext = [
+            ConfigurationFile::SERVER_CONFIG,
+            VirtualHost::getFullName(),
+        ];
+    }
+
+}
