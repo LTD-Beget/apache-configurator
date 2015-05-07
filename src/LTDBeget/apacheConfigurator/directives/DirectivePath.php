@@ -91,6 +91,37 @@ class DirectivePath implements iDirectivePath
     }
 
     /**
+     * Make path from this path as context path and type and value as new directive value
+     * @param $type
+     * @param $value
+     * @return DirectivePath
+     */
+    public function makeChildDirectivePath($type, $value)
+    {
+        $type = Directive::reservedWordFlagRemover($type);
+        $path = $this->getPath();
+
+        if($this->isRoot()) {
+            $path = [
+                "directive" => $type,
+                "value"     => $value
+            ];
+        } else {
+            $inner = &$path;
+            while(!$this->isLastDirectiveInPath($inner)) {
+                $inner = &$inner["innerDirective"];
+            }
+
+            $inner["innerDirective"] = [
+                "directive" => $type,
+                "value"     => $value
+            ];
+        }
+
+        return new DirectivePath($path);
+    }
+
+    /**
      * @param $path
      * @param $previous
      * @return mixed

@@ -12,12 +12,11 @@
     }
   ],
   "require": {
-    "php": ">=5.5",
-    "ext-curl": "*"
+    "php": ">=5.5"
   },
   "autoload": {
     "psr-0": {
-      "LTDBeget\\ApacheConfigurator": "src"
+      "LTDBeget\\apacheConfigurator": "src"
     }
   }
 }
