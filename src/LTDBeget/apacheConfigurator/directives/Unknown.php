@@ -50,12 +50,12 @@ class Unknown extends Directive
      * @throws \LTDBeget\apacheConfigurator\exceptions\NotAllowedContextException
      * @throws \LTDBeget\apacheConfigurator\exceptions\NotAllowedValueException
      */
-    public function __construct($type, $value, $isSection, $context)
+    public function __construct($type, $value, $isSection, iContext $context)
     {
         $this->type = $type;
-        $this->setValue($value);
         $this->isSection = $isSection;
-        $this->setContext($context);
+
+        parent::__construct($value,$context);
     }
 
     /**

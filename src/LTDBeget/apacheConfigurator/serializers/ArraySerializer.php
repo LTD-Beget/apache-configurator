@@ -67,15 +67,9 @@ class ArraySerializer implements iSerializer
 
         foreach($paths as $key => $path) {
             $fullPath = new DirectivePath($path);
-//            print_r($fullPath);
-//            $parent = $fullPath->getParentPath();
-//            $likeFull = $parent->makeChildDirectivePath($fullPath->getDirectiveType(), $fullPath->getDirectiveValue());
-//            print_r($likeFull);
-//            echo "compareresult = ".$fullPath->comparePath($likeFull)."\n";
-//            echo $fullPath->getDirectiveType()."\n";
-//            echo $fullPath->getDirectiveValue()."\n";
-//            print_r($fullPath->getParentPath()->getPath());
-            $configurationFile->addDirective($fullPath->getDirectiveType(), $fullPath->getDirectiveValue(), $fullPath->getParentPath());
+            $parentPath = $fullPath->getParentPath();
+            $context = $configurationFile->getContextByPath($parentPath);
+            $configurationFile->addDirective($fullPath->getDirectiveType(), $fullPath->getDirectiveValue(), $context);
         }
 
         return $configurationFile;

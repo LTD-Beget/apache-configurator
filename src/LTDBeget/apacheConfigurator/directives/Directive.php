@@ -11,7 +11,6 @@ namespace LTDBeget\apacheConfigurator\directives;
 
 use LTDBeget\apacheConfigurator\exceptions\NotAllowedContextException;
 use LTDBeget\apacheConfigurator\exceptions\NotAllowedValueException;
-use LTDBeget\apacheConfigurator\interfaces\iContextAble;
 use LTDBeget\apacheConfigurator\interfaces\iDirective;
 use LTDBeget\apacheConfigurator\interfaces\iDirectivePath;
 use LTDBeget\apacheConfigurator\interfaces\iContext;
@@ -98,6 +97,20 @@ class Directive implements iDirective
         return $type;
     }
 
+    /**
+     * is this context root of Apache configuration file
+     * @return mixed
+     */
+    public function isRoot()
+    {
+        return false;
+    }
+
+    /**
+     * Delete flag that indicates type(name) of directive that has name with reserved words
+     * @param $type
+     * @return string
+     */
     public static function reservedWordFlagRemover($type)
     {
         if(in_array($type, Directive::$reservedWordDirectivesFlagged)) {
@@ -106,6 +119,11 @@ class Directive implements iDirective
         return $type;
     }
 
+    /**
+     * Add flag that indicates type(name) of directive that has name with reserved words
+     * @param $type
+     * @return string
+     */
     public static function reservedWordFlagAdder($type)
     {
         if(in_array($type, Directive::$reservedWordDirectives)) {
@@ -188,14 +206,10 @@ class Directive implements iDirective
      */
     public function setContext(iContext $context)
     {
-        if(($context instanceof iContext)) {
-            if($this->isAllowedContext($context)) {
-                $this->context = $context;
-            } else {
-                throw new NotAllowedContextException("Its now allowed to set {$this->getType()} in {$context->getType()}");
-            }
+        if($this->isAllowedContext($context)) {
+            $this->context = $context;
         } else {
-            throw new NotAllowedContextException("Wrong interface for context of {$this->getType()}");
+            throw new NotAllowedContextException("Its now allowed to set {$this->getType()} in {$context->getType()}");
         }
     }
 
@@ -259,7 +273,7 @@ class Directive implements iDirective
     public function iterateParent()
     {
         $context = $this;
-        while($context instanceof iContextAble) {
+        while(!$context->isRoot()) {
             $context = $context->getContext();
             yield $context;
         }
