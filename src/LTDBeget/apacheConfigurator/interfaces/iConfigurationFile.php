@@ -14,10 +14,10 @@ interface iConfigurationFile extends iContext
     /**
      * @param String $directiveName name of Apache directive
      * @param String $value value of Apache directive
-     * @param iDirectivePath $contextPath path to context
+     * @param iContext $context where add inner directive
      * @return iDirective
      */
-    public function addDirective($directiveName, $value, iDirectivePath $contextPath);
+    public function addDirective($directiveName, $value, iContext $context);
 
     /**
      * @param iDirective $directive

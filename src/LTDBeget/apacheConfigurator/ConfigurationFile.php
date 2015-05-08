@@ -16,6 +16,7 @@ use LTDBeget\apacheConfigurator\exceptions\NotFoundDirectiveException;
 use LTDBeget\apacheConfigurator\exceptions\NotFoundFileTypeException;
 use LTDBeget\apacheConfigurator\exceptions\WrongDirectivePathFormat;
 use LTDBeget\apacheConfigurator\interfaces\iConfigurationFile;
+use LTDBeget\apacheConfigurator\interfaces\iContext;
 use LTDBeget\apacheConfigurator\interfaces\iDirective;
 use LTDBeget\apacheConfigurator\interfaces\iDirectivePath;
 
@@ -45,14 +46,16 @@ class ConfigurationFile implements iConfigurationFile
     /**
      * @param String $directiveName name of Apache directive
      * @param String $value value of Apache directive
-     * @param iDirectivePath $contextPath path to context
+     * @param iContext $context
+     * @return iDirective
      * @throws NotFoundDirectiveException
      * @throws WrongDirectivePathFormat
-     * @return iDirective
      */
-    public function addDirective($directiveName, $value, iDirectivePath $contextPath = null)
+    public function addDirective($directiveName, $value, iContext $context = null)
     {
-        $context = $this->getContextByPath($contextPath);
+        if(is_null($context)) {
+            $context = $this;
+        }
 
         $directivePath = $context->getPath()->makeChildDirectivePath($directiveName, $value);
 
@@ -60,7 +63,7 @@ class ConfigurationFile implements iConfigurationFile
             throw new WrongDirectivePathFormat("Directive already exists by path: ".json_encode($directivePath->getPath()));
         }
 
-        $className = "LTDBeget\\apacheConfigurator\\directives\\available\\".$directivePath->getDirectiveType();
+        $className = __NAMESPACE__."\\directives\\available\\".$directivePath->getDirectiveType();
         if(class_exists($className)) {
             $directive = new $className($directivePath->getDirectiveValue(), $context);
         } else {
@@ -110,6 +113,15 @@ class ConfigurationFile implements iConfigurationFile
     }
 
     /**
+     * is this context root of Apache configuration file
+     * @return mixed
+     */
+    public function isRoot()
+    {
+        return true;
+    }
+
+    /**
      * iterate throw all children of iInnerDirectiveAble
      * @yield iDirective
      * @return iDirective[]
@@ -124,7 +136,6 @@ class ConfigurationFile implements iConfigurationFile
     }
 
     /**
-     * @internal
      * add InnerDirective in iInnerDirectiveAble
      * @param iDirective $directive
      * @return mixed
@@ -189,19 +200,24 @@ class ConfigurationFile implements iConfigurationFile
     }
 
     /**
+     * Find context by path and creates if doesn't exist
      * @param iDirectivePath|null $contextPath
      * @return ConfigurationFile|iDirective
      * @throws NotFoundDirectiveException
      * @throws WrongDirectivePathFormat
      */
-    protected function getContextByPath(iDirectivePath $contextPath)
+    public function getContextByPath(iDirectivePath $contextPath)
     {
         if(is_null($contextPath) or $contextPath->isRoot()) {
             $context = $this;
         } else {
             $context = $this->findByPath($contextPath);
             if(is_null($context)) {
-                $context = $this->addDirective($contextPath->getDirectiveType(), $contextPath->getDirectiveValue(), $contextPath->getParentPath());
+                $context = $this->addDirective(
+                    $contextPath->getDirectiveType(),
+                    $contextPath->getDirectiveValue(),
+                    $this->getContextByPath($contextPath->getParentPath())
+                );
             }
         }
 

@@ -34,4 +34,10 @@ interface iContext extends iType
      * @param iDirective $directive
      */
     public function detachInnerDirective(iDirective $directive);
+
+    /**
+     * is this context root of Apache configuration file
+     * @return mixed
+     */
+    public function isRoot();
 }
