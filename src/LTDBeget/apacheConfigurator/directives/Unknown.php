@@ -62,7 +62,7 @@ class Unknown extends Directive
      * Name of Apache directive
      * @return String
      */
-    public function getType()
+    public function getName()
     {
         return $this->type;
     }
@@ -111,7 +111,7 @@ class Unknown extends Directive
     public function appendInnedDirective(iDirective $directive)
     {
         if($directive->getContext() !== $this) {
-            throw new NotAllowedContextException("trying add inner directive in {$this->getType()} with context of another directive");
+            throw new NotAllowedContextException("trying add inner directive in {$this->getName()} with context of another directive");
         }
         $this->innerDirectives[] = $directive;
     }

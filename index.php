@@ -102,7 +102,7 @@ $apacheArrayExample = [
     $configurationFile = ArraySerializer::deserialize(ConfigurationFile::SERVER_CONFIG, $configuration);
 
     foreach($configurationFile->iterateChildren() as $directive) {
-        echo "{$directive->getType()} ".$directive->getValue()."\n";
+        echo "{$directive->getName()} ".$directive->getValue()."\n";
         echo "Description: ".$directive->getDescription()."\n";
         echo "ApacheDocLink: ".$directive->getApacheDocLink()."\n";
         echo "Syntax: ".$directive->getSyntax()."\n";
