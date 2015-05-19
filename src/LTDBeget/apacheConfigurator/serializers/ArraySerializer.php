@@ -137,7 +137,7 @@ class ArraySerializer implements iSerializer
     protected function directiveToArray(iDirective $directive)
     {
         $directiveArray = [
-            "directive" => $directive->getType(),
+            "directive" => $directive->getName(),
             "value"     => $directive->getValue()
         ];
 

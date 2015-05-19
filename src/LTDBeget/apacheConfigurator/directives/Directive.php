@@ -68,15 +68,6 @@ class Directive implements iDirective
     }
 
     /**
-     * Late static bindings className
-     * @return String
-     */
-    public static function className()
-    {
-        return __CLASS__;
-    }
-
-    /**
      * the source module which defines the directive
      * @return String
      */
@@ -89,7 +80,7 @@ class Directive implements iDirective
      * Name of Apache directive
      * @return String
      */
-    public function getType()
+    public function getName()
     {
         $classNameWithNamespace = get_class($this);
         $type = substr($classNameWithNamespace, strrpos($classNameWithNamespace, '\\')+1);
@@ -142,6 +133,17 @@ class Directive implements iDirective
     }
 
     /**
+     * Name of Apache directive avalible without creation directive obj
+     */
+    public static function directiveName()
+    {
+        $classNameWithNamespace = self::getFullName();
+        $type = substr($classNameWithNamespace, strrpos($classNameWithNamespace, '\\')+1);
+        $type = self::reservedWordFlagRemover($type);
+        return $type;
+    }
+
+    /**
      * Value of Apache directive
      * @return String
      */
@@ -160,7 +162,7 @@ class Directive implements iDirective
         if($this->isAllowedValue($value)) {
             $this->value = $value;
         } else {
-            throw new NotAllowedValueException("Its now allowed to set {$value} in {$this->getType()} directive. Example syntax is {$this->getSyntax()}");
+            throw new NotAllowedValueException("Its now allowed to set {$value} in {$this->getName()} directive. Example syntax is {$this->getSyntax()}");
         }
     }
 
@@ -209,7 +211,7 @@ class Directive implements iDirective
         if($this->isAllowedContext($context)) {
             $this->context = $context;
         } else {
-            throw new NotAllowedContextException("Its now allowed to set {$this->getType()} in {$context->getType()}");
+            throw new NotAllowedContextException("Its now allowed to set {$this->getName()} in {$context->getName()}");
         }
     }
 
@@ -243,7 +245,7 @@ class Directive implements iDirective
         }
 
         if($directive->getContext() !== $this) {
-            throw new NotAllowedContextException("trying add inner directive in {$this->getType()} with context of another directive");
+            throw new NotAllowedContextException("trying add inner directive in {$this->getName()} with context of another directive");
         }
         $this->innerDirectives[] = $directive;
     }
@@ -256,7 +258,7 @@ class Directive implements iDirective
     public function detachInnerDirective(iDirective $directive)
     {
         if($this !== $directive->getContext()) {
-            throw new NotAllowedContextException("Trying to detach from {$this->getType()} directive {$directive->getContext()} which is not its context");
+            throw new NotAllowedContextException("Trying to detach from {$this->getName()} directive {$directive->getContext()} which is not its context");
         }
 
         foreach($this->innerDirectives as $key => $innerDirective) {
@@ -304,14 +306,14 @@ class Directive implements iDirective
     {
 
         $path = [
-            "directive" => $this->getType(),
+            "directive" => $this->getName(),
             "value"     => $this->getValue()
         ];
         $finalPath = [];
         foreach($this->iterateParent() as $directive) {
             if($directive instanceof Directive) {
                 $finalPath = [
-                    "directive"      => $directive->getType(),
+                    "directive"      => $directive->getName(),
                     "value"          => $directive->getValue(),
                     "innerDirective" => $path,
                 ];
@@ -334,7 +336,7 @@ class Directive implements iDirective
             return true;
         }
 
-        return is_null($this->allowedContext)?true:in_array($context->getType(), $this->allowedContext);
+        return is_null($this->allowedContext)?true:in_array($context->getName(), $this->allowedContext);
     }
 
     /**

@@ -89,7 +89,7 @@ class ConfigurationFile implements iConfigurationFile
      * string type of current configurationFile "serverConfig", "htaccess"
      * @return String
      */
-    public function getType()
+    public function getName()
     {
         return $this->fileType;
     }
@@ -144,7 +144,7 @@ class ConfigurationFile implements iConfigurationFile
     public function appendInnedDirective(iDirective $directive)
     {
         if($this !== $directive->getContext()) {
-            throw new NotAllowedContextException("Trying to append to {$this->getType()} directive {$directive->getContext()} which is not its context");
+            throw new NotAllowedContextException("Trying to append to {$this->getName()} directive {$directive->getContext()} which is not its context");
         }
 
         $this->innerDirectives[] = $directive;
@@ -158,7 +158,7 @@ class ConfigurationFile implements iConfigurationFile
     public function detachInnerDirective(iDirective $directive)
     {
         if($this !== $directive->getContext()) {
-            throw new NotAllowedContextException("Trying to detach from {$this->getType()} directive {$directive->getContext()} which is not its context");
+            throw new NotAllowedContextException("Trying to detach from {$this->getName()} directive {$directive->getContext()} which is not its context");
         }
 
         foreach($this->innerDirectives as $key => $innerDirective) {

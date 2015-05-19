@@ -14,7 +14,7 @@ interface iType {
      * Name of Apache directive or file type
      * @return String
      */
-    public function getType();
+    public function getName();
 
     /**
      * Name of Apache directive with full qualified namespace or file type

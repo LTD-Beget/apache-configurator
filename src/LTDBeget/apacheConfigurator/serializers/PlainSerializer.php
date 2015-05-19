@@ -75,13 +75,13 @@ class PlainSerializer implements iSerializer
         $tabulation     = $nestLevel > 0 ? str_repeat("  ", $nestLevel) : "";
 
         if ($directive->isSection()) {
-            $directivePlain = $tabulation . "<{$directive->getType()} {$directive->getValue()}>\n";
+            $directivePlain = $tabulation . "<{$directive->getName()} {$directive->getValue()}>\n";
             foreach ($directive->getInnerDirectives() as $innerDirective) {
                 $directivePlain .= $this->directiveToPlain($innerDirective, $nestLevel + 1);
             }
-            $directivePlain .= $tabulation . "</{$directive->getType()}>\n";
+            $directivePlain .= $tabulation . "</{$directive->getName()}>\n";
         } else {
-            $directivePlain = $tabulation . "{$directive->getType()} {$directive->getValue()}\n";
+            $directivePlain = $tabulation . "{$directive->getName()} {$directive->getValue()}\n";
         }
 
         return $directivePlain;
