@@ -32,6 +32,6 @@ class JsonSerializer implements iSerializer
      */
     public static function deserialize($fileType, $configuration)
     {
-        ArraySerializer::deserialize($fileType, json_decode($configuration, true));
+        return ArraySerializer::deserialize($fileType, json_decode($configuration, true));
     }
 }
