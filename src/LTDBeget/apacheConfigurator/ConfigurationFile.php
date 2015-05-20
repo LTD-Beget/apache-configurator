@@ -59,8 +59,9 @@ class ConfigurationFile implements iConfigurationFile
 
         $directivePath = $context->getPath()->makeChildDirectivePath($directiveName, $value);
 
-        if($this->findByPath($directivePath)) {
-            throw new WrongDirectivePathFormat("Directive already exists by path: ".json_encode($directivePath->getPath()));
+        // if identical directive already exists, return it, without adding it again
+        if($existDirective = $this->findByPath($directivePath)) {
+            return $existDirective;
         }
 
         $className = __NAMESPACE__."\\directives\\available\\".$directivePath->getDirectiveType();
