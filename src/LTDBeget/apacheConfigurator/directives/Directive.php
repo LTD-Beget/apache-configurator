@@ -129,7 +129,7 @@ class Directive implements iDirective
      */
     public static function getFullName()
     {
-        return __CLASS__;
+        return get_called_class();
     }
 
     /**
