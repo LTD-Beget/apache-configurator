@@ -44,6 +44,7 @@ class ConfigurationFile implements iConfigurationFile
     }
 
     /**
+     * TODO slow methos. refactor
      * @param String $directiveName name of Apache directive
      * @param String $value value of Apache directive
      * @param iContext $context

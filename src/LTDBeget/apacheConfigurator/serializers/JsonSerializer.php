@@ -27,7 +27,7 @@ class JsonSerializer implements iSerializer
 
     /**
      * @param String $fileType
-     * @param String|array $configuration
+     * @param String $configuration valid json encoded string
      * @return iConfigurationFile
      */
     public static function deserialize($fileType, $configuration)
