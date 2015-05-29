@@ -44,7 +44,6 @@ class ConfigurationFile implements iConfigurationFile
     }
 
     /**
-     * TODO slow methos. refactor
      * @param String $directiveName name of Apache directive
      * @param String $value value of Apache directive
      * @param iContext $context
@@ -58,18 +57,17 @@ class ConfigurationFile implements iConfigurationFile
             $context = $this;
         }
 
-        $directivePath = $context->getPath()->makeChildDirectivePath($directiveName, $value);
-
         // if identical directive already exists, return it, without adding it again
-        if($existDirective = $this->findByPath($directivePath)) {
-            return $existDirective;
+        $alreadyExists = $this->getInnerDirectiveIfExists($directiveName, $value, $context);
+        if(!is_null($alreadyExists)) {
+            return $alreadyExists;
         }
 
-        $className = __NAMESPACE__."\\directives\\available\\".$directivePath->getDirectiveType();
+        $className = __NAMESPACE__."\\directives\\available\\".$directiveName;
         if(class_exists($className)) {
-            $directive = new $className($directivePath->getDirectiveValue(), $context);
+            $directive = new $className($value, $context);
         } else {
-            $directive = new Unknown($directivePath->getDirectiveType(), $directivePath->getDirectiveValue(), false, $context);
+            $directive = new Unknown($directiveName, $value, false, $context);
         }
 
         $context->appendInnedDirective($directive);
@@ -224,5 +222,22 @@ class ConfigurationFile implements iConfigurationFile
         }
 
         return $context;
+    }
+
+    /**
+     * Find in context inner directive with identical name and value
+     * @param $directiveName
+     * @param $value
+     * @param iContext $context
+     * @return iDirective|null  if exists return it or return null
+     */
+    protected function getInnerDirectiveIfExists($directiveName, $value, iContext $context)
+    {
+        foreach($context->getInnerDirectives() as $innerDirective) {
+            if($innerDirective->getName() == $directiveName and $innerDirective->getValue() == $value) {
+                return $innerDirective;
+            }
+        }
+        return null;
     }
 }
