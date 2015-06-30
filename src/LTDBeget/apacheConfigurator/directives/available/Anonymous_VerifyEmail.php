@@ -21,7 +21,7 @@ class Anonymous_VerifyEmail extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_authn_anon.html#anonymous_verifyemail";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_authn_anon.html#anonymous_verifyemail";
     }
 
     /**

@@ -21,7 +21,7 @@ class SSIStartTag extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_include.html#ssistarttag";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_include.html#ssistarttag";
     }
 
     /**

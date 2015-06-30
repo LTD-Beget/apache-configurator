@@ -21,7 +21,7 @@ class CacheDirLength extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_cache_disk.html#cachedirlength";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_cache_disk.html#cachedirlength";
     }
 
     /**

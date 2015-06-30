@@ -21,7 +21,7 @@ class AuthMerging extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_authz_core.html#authmerging";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_authz_core.html#authmerging";
     }
 
     /**

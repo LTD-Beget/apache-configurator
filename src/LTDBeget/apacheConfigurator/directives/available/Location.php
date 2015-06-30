@@ -27,7 +27,7 @@ class Location extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/core.html#location";
+        return Directive::$apacheSite."/docs/2.4/mod/core.html#location";
     }
 
     /**

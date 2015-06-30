@@ -21,7 +21,7 @@ class AuthDBMType extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_authn_dbm.html#authdbmtype";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_authn_dbm.html#authdbmtype";
     }
 
     /**

@@ -21,7 +21,7 @@ class LoadModule extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_so.html#loadmodule";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_so.html#loadmodule";
     }
 
     /**

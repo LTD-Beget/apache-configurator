@@ -21,7 +21,7 @@ class AddDescription extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_autoindex.html#adddescription";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_autoindex.html#adddescription";
     }
 
     /**

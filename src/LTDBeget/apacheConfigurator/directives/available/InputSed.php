@@ -21,7 +21,7 @@ class InputSed extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_sed.html#inputsed";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_sed.html#inputsed";
     }
 
     /**

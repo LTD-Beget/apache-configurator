@@ -21,7 +21,7 @@ class AuthDBMUserFile extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_authn_dbm.html#authdbmuserfile";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_authn_dbm.html#authdbmuserfile";
     }
 
     /**

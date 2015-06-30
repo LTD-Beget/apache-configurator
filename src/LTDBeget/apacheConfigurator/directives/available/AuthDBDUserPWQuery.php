@@ -21,7 +21,7 @@ class AuthDBDUserPWQuery extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_authn_dbd.html#authdbduserpwquery";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_authn_dbd.html#authdbduserpwquery";
     }
 
     /**

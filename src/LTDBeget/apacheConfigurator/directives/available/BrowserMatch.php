@@ -21,7 +21,7 @@ class BrowserMatch extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_setenvif.html#browsermatch";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_setenvif.html#browsermatch";
     }
 
     /**

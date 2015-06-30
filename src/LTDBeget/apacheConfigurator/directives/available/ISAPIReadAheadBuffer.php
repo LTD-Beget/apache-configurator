@@ -21,7 +21,7 @@ class ISAPIReadAheadBuffer extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_isapi.html#isapireadaheadbuffer";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_isapi.html#isapireadaheadbuffer";
     }
 
     /**

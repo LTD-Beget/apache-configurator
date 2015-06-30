@@ -21,7 +21,7 @@ class Substitute extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_substitute.html#substitute";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_substitute.html#substitute";
     }
 
     /**

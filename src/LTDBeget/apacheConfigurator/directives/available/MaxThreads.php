@@ -21,7 +21,7 @@ class MaxThreads extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mpm_netware.html#maxthreads";
+        return Directive::$apacheSite."/docs/2.4/mod/mpm_netware.html#maxthreads";
     }
 
     /**

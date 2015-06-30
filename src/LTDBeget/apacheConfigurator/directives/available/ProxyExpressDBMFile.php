@@ -21,7 +21,7 @@ class ProxyExpressDBMFile extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_proxy_express.html#proxyexpressdbmfile";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_proxy_express.html#proxyexpressdbmfile";
     }
 
     /**

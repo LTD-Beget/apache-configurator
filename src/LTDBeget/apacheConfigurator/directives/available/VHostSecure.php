@@ -21,7 +21,7 @@ class VHostSecure extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_privileges.html#vhostsecure";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_privileges.html#vhostsecure";
     }
 
     /**

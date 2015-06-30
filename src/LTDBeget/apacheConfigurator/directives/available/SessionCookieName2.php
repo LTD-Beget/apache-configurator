@@ -21,7 +21,7 @@ class SessionCookieName2 extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_session_cookie.html#sessioncookiename2";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_session_cookie.html#sessioncookiename2";
     }
 
     /**

@@ -21,7 +21,7 @@ class FilterTrace extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_filter.html#filtertrace";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_filter.html#filtertrace";
     }
 
     /**

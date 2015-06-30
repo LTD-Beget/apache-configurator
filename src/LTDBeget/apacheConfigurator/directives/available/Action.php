@@ -21,7 +21,7 @@ class Action extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_actions.html#action";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_actions.html#action";
     }
 
     /**

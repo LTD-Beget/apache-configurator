@@ -21,7 +21,7 @@ class Deny extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_access_compat.html#deny";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_access_compat.html#deny";
     }
 
     /**

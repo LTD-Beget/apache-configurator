@@ -21,7 +21,7 @@ class AllowOverride extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/core.html#allowoverride";
+        return Directive::$apacheSite."/docs/2.4/mod/core.html#allowoverride";
     }
 
     /**

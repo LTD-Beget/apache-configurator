@@ -21,7 +21,7 @@ class DirectoryIndex extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_dir.html#directoryindex";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_dir.html#directoryindex";
     }
 
     /**

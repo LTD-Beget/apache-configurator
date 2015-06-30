@@ -21,7 +21,7 @@ class SSLOpenSSLConfCmd extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_ssl.html#sslopensslconfcmd";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_ssl.html#sslopensslconfcmd";
     }
 
     /**

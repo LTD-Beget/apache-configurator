@@ -21,7 +21,7 @@ class PidFile extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mpm_common.html#pidfile";
+        return Directive::$apacheSite."/docs/2.4/mod/mpm_common.html#pidfile";
     }
 
     /**

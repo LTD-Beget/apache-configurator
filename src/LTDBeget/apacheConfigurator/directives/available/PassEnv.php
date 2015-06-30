@@ -21,7 +21,7 @@ class PassEnv extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_env.html#passenv";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_env.html#passenv";
     }
 
     /**

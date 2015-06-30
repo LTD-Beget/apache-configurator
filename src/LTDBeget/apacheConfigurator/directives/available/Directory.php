@@ -27,7 +27,7 @@ class Directory extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/core.html#directory";
+        return Directive::$apacheSite."/docs/2.4/mod/core.html#directory";
     }
 
     /**

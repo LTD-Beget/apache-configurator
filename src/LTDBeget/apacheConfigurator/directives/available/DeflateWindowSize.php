@@ -21,7 +21,7 @@ class DeflateWindowSize extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_deflate.html#deflatewindowsize";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_deflate.html#deflatewindowsize";
     }
 
     /**

@@ -21,7 +21,7 @@ class ProxyHTMLDocType extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_proxy_html.html#proxyhtmldoctype";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_proxy_html.html#proxyhtmldoctype";
     }
 
     /**

@@ -21,7 +21,7 @@ class CacheSocache extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_cache_socache.html#cachesocache";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_cache_socache.html#cachesocache";
     }
 
     /**

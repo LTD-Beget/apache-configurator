@@ -21,7 +21,7 @@ class SSLRequireSSL extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_ssl.html#sslrequiressl";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_ssl.html#sslrequiressl";
     }
 
     /**

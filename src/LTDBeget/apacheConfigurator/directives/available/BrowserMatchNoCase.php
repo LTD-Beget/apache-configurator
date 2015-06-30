@@ -21,7 +21,7 @@ class BrowserMatchNoCase extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_setenvif.html#browsermatchnocase";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_setenvif.html#browsermatchnocase";
     }
 
     /**

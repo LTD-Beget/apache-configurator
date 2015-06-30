@@ -21,7 +21,7 @@ class ProxyAddHeaders extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_proxy.html#proxyaddheaders";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_proxy.html#proxyaddheaders";
     }
 
     /**

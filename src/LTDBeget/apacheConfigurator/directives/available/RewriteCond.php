@@ -21,7 +21,7 @@ class RewriteCond extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_rewrite.html#rewritecond";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_rewrite.html#rewritecond";
     }
 
     /**

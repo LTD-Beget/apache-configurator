@@ -27,7 +27,7 @@ class RequireNone extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_authz_core.html#requirenone";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_authz_core.html#requirenone";
     }
 
     /**

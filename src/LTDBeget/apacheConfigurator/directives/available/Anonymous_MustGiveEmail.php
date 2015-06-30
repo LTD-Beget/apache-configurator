@@ -21,7 +21,7 @@ class Anonymous_MustGiveEmail extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_authn_anon.html#anonymous_mustgiveemail";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_authn_anon.html#anonymous_mustgiveemail";
     }
 
     /**

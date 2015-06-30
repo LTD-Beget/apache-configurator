@@ -21,7 +21,7 @@ class RequestReadTimeout extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_reqtimeout.html#requestreadtimeout";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_reqtimeout.html#requestreadtimeout";
     }
 
     /**

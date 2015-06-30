@@ -21,7 +21,7 @@ class CharsetSourceEnc extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_charset_lite.html#charsetsourceenc";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_charset_lite.html#charsetsourceenc";
     }
 
     /**

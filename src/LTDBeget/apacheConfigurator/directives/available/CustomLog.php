@@ -21,7 +21,7 @@ class CustomLog extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_log_config.html#customlog";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_log_config.html#customlog";
     }
 
     /**

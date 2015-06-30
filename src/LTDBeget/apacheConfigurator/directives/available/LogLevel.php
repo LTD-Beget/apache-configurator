@@ -21,7 +21,7 @@ class LogLevel extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/core.html#loglevel";
+        return Directive::$apacheSite."/docs/2.4/mod/core.html#loglevel";
     }
 
     /**

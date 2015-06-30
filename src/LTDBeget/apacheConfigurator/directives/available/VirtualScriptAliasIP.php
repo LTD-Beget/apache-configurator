@@ -21,7 +21,7 @@ class VirtualScriptAliasIP extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_vhost_alias.html#virtualscriptaliasip";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_vhost_alias.html#virtualscriptaliasip";
     }
 
     /**

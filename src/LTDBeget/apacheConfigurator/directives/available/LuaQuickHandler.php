@@ -21,7 +21,7 @@ class LuaQuickHandler extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_lua.html#luaquickhandler";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_lua.html#luaquickhandler";
     }
 
     /**

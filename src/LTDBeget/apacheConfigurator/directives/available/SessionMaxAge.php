@@ -21,7 +21,7 @@ class SessionMaxAge extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_session.html#sessionmaxage";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_session.html#sessionmaxage";
     }
 
     /**

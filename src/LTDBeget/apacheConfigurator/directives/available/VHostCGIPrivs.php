@@ -21,7 +21,7 @@ class VHostCGIPrivs extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_privileges.html#vhostcgiprivs";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_privileges.html#vhostcgiprivs";
     }
 
     /**

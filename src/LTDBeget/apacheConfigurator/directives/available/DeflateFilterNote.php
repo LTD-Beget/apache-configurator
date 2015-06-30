@@ -21,7 +21,7 @@ class DeflateFilterNote extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_deflate.html#deflatefilternote";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_deflate.html#deflatefilternote";
     }
 
     /**

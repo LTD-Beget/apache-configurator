@@ -21,7 +21,7 @@ class VirtualDocumentRootIP extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_vhost_alias.html#virtualdocumentrootip";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_vhost_alias.html#virtualdocumentrootip";
     }
 
     /**

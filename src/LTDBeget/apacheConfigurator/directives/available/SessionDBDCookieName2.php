@@ -21,7 +21,7 @@ class SessionDBDCookieName2 extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_session_dbd.html#sessiondbdcookiename2";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_session_dbd.html#sessiondbdcookiename2";
     }
 
     /**

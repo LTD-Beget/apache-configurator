@@ -21,7 +21,7 @@ class ISAPILogNotSupported extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_isapi.html#isapilognotsupported";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_isapi.html#isapilognotsupported";
     }
 
     /**

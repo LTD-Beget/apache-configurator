@@ -21,7 +21,7 @@ class DumpIOInput extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_dumpio.html#dumpioinput";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_dumpio.html#dumpioinput";
     }
 
     /**

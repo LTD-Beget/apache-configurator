@@ -21,7 +21,7 @@ class SSLStaplingErrorCacheTimeout extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_ssl.html#sslstaplingerrorcachetimeout";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_ssl.html#sslstaplingerrorcachetimeout";
     }
 
     /**

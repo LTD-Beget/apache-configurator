@@ -21,7 +21,7 @@ class ProxyFtpDirCharset extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_proxy_ftp.html#proxyftpdircharset";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_proxy_ftp.html#proxyftpdircharset";
     }
 
     /**

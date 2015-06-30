@@ -21,7 +21,7 @@ class AuthFormSitePassphrase extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_auth_form.html#authformsitepassphrase";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_auth_form.html#authformsitepassphrase";
     }
 
     /**

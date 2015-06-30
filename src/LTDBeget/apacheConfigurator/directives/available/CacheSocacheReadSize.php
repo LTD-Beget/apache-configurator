@@ -21,7 +21,7 @@ class CacheSocacheReadSize extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_cache_socache.html#cachesocachereadsize";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_cache_socache.html#cachesocachereadsize";
     }
 
     /**

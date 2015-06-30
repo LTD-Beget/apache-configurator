@@ -21,7 +21,7 @@ class SSLProxyMachineCertificateChainFile extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_ssl.html#sslproxymachinecertificatechainfile";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_ssl.html#sslproxymachinecertificatechainfile";
     }
 
     /**

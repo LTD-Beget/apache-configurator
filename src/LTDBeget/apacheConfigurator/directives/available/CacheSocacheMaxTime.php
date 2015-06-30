@@ -21,7 +21,7 @@ class CacheSocacheMaxTime extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_cache_socache.html#cachesocachemaxtime";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_cache_socache.html#cachesocachemaxtime";
     }
 
     /**

@@ -21,7 +21,7 @@ class AllowCONNECT extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_proxy_connect.html#allowconnect";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_proxy_connect.html#allowconnect";
     }
 
     /**

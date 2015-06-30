@@ -21,7 +21,7 @@ class ProxyFtpEscapeWildcards extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_proxy_ftp.html#proxyftpescapewildcards";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_proxy_ftp.html#proxyftpescapewildcards";
     }
 
     /**

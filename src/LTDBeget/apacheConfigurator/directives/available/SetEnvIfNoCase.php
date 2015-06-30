@@ -21,7 +21,7 @@ class SetEnvIfNoCase extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_setenvif.html#setenvifnocase";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_setenvif.html#setenvifnocase";
     }
 
     /**

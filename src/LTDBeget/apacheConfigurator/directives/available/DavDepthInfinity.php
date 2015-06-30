@@ -21,7 +21,7 @@ class DavDepthInfinity extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_dav.html#davdepthinfinity";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_dav.html#davdepthinfinity";
     }
 
     /**

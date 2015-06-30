@@ -21,7 +21,7 @@ class VHostPrivs extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_privileges.html#vhostprivs";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_privileges.html#vhostprivs";
     }
 
     /**

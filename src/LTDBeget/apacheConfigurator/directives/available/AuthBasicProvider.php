@@ -21,7 +21,7 @@ class AuthBasicProvider extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_auth_basic.html#authbasicprovider";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_auth_basic.html#authbasicprovider";
     }
 
     /**

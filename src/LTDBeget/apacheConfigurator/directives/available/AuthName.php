@@ -21,7 +21,7 @@ class AuthName extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_authn_core.html#authname";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_authn_core.html#authname";
     }
 
     /**

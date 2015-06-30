@@ -21,7 +21,7 @@ class User extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_unixd.html#user";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_unixd.html#user";
     }
 
     /**

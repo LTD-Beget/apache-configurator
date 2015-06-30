@@ -21,7 +21,7 @@ class ForensicLog extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_log_forensic.html#forensiclog";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_log_forensic.html#forensiclog";
     }
 
     /**

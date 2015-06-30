@@ -21,7 +21,7 @@ class LDAPVerifyServerCert extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_ldap.html#ldapverifyservercert";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_ldap.html#ldapverifyservercert";
     }
 
     /**

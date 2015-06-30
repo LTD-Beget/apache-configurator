@@ -21,7 +21,7 @@ class dInclude extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/core.html#include";
+        return Directive::$apacheSite."/docs/2.4/mod/core.html#include";
     }
 
     /**

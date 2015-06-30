@@ -21,7 +21,7 @@ class ServerPath extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/core.html#serverpath";
+        return Directive::$apacheSite."/docs/2.4/mod/core.html#serverpath";
     }
 
     /**

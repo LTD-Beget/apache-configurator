@@ -21,7 +21,7 @@ class HeartbeatMaxServers extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_heartmonitor.html#heartbeatmaxservers";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_heartmonitor.html#heartbeatmaxservers";
     }
 
     /**

@@ -21,7 +21,7 @@ class AddHandler extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_mime.html#addhandler";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_mime.html#addhandler";
     }
 
     /**
