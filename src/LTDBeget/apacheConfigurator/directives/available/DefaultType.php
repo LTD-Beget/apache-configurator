@@ -19,7 +19,7 @@ class DefaultType extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/core.html#defaulttype";
     }
@@ -28,7 +28,7 @@ class DefaultType extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "core";
     }
@@ -37,7 +37,7 @@ class DefaultType extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "This directive has no effect other than to emit warnings if the value is not none. In prior versions, DefaultType would specify a default media type to assign to response content for which no other media type configuration could be found. ";
     }
@@ -46,7 +46,7 @@ class DefaultType extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'DefaultType media-type|none';
     }

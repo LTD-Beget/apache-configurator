@@ -19,7 +19,7 @@ class ErrorDocument extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/core.html#errordocument";
     }
@@ -28,7 +28,7 @@ class ErrorDocument extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "core";
     }
@@ -37,7 +37,7 @@ class ErrorDocument extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "What the server will return to the client in case of an error";
     }
@@ -46,7 +46,7 @@ class ErrorDocument extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'ErrorDocument error-code document';
     }

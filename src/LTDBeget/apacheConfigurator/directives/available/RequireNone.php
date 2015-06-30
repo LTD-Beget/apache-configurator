@@ -25,7 +25,7 @@ class RequireNone extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/mod_authz_core.html#requirenone";
     }
@@ -34,7 +34,7 @@ class RequireNone extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_authz_core";
     }
@@ -43,7 +43,7 @@ class RequireNone extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Enclose a group of authorization directives of which none must succeed for the enclosing directive to not fail.";
     }
@@ -52,7 +52,7 @@ class RequireNone extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return '<RequireNone> ... </RequireNone>';
     }

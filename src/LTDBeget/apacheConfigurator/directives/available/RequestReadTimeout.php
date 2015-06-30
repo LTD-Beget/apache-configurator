@@ -19,7 +19,7 @@ class RequestReadTimeout extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/mod_reqtimeout.html#requestreadtimeout";
     }
@@ -28,7 +28,7 @@ class RequestReadTimeout extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_reqtimeout";
     }
@@ -37,7 +37,7 @@ class RequestReadTimeout extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Set timeout values for receiving request headers and body from client.";
     }
@@ -46,7 +46,7 @@ class RequestReadTimeout extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'RequestReadTimeout [header=timeout[-maxtimeout][,MinRate=rate] [body=timeout[-maxtimeout][,MinRate=rate]';
     }

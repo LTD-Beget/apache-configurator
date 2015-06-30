@@ -25,7 +25,7 @@ class dElseIf extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/core.html#elseif";
     }
@@ -34,7 +34,7 @@ class dElseIf extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "core";
     }
@@ -43,7 +43,7 @@ class dElseIf extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Contains directives that apply only if a condition is satisfied by a request at runtime while the condition of a previous  section is not satisfied";
     }
@@ -52,7 +52,7 @@ class dElseIf extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return '<ElseIf expression> ... </ElseIf>';
     }

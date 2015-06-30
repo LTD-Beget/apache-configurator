@@ -19,7 +19,7 @@ class AddIcon extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/mod_autoindex.html#addicon";
     }
@@ -28,7 +28,7 @@ class AddIcon extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_autoindex";
     }
@@ -37,7 +37,7 @@ class AddIcon extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Icon to display for a file selected by name";
     }
@@ -46,7 +46,7 @@ class AddIcon extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'AddIcon icon name [name] ...';
     }

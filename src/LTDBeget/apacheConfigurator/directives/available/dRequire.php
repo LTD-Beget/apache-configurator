@@ -19,7 +19,7 @@ class dRequire extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/mod_authz_core.html#require";
     }
@@ -28,7 +28,7 @@ class dRequire extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_authz_core";
     }
@@ -37,7 +37,7 @@ class dRequire extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Tests whether an authenticated user is authorized by an authorization provider.";
     }
@@ -46,7 +46,7 @@ class dRequire extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'Require [not] entity-name [entity-name] ...';
     }

@@ -19,7 +19,7 @@ class LuaHookLog extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/mod_lua.html#luahooklog";
     }
@@ -28,7 +28,7 @@ class LuaHookLog extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_lua";
     }
@@ -37,7 +37,7 @@ class LuaHookLog extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Provide a hook for the access log phase of a request processing";
     }
@@ -46,7 +46,7 @@ class LuaHookLog extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'LuaHookLog /path/to/lua/script.lua log_function_name';
     }

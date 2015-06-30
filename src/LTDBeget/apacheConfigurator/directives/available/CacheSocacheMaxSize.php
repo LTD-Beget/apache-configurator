@@ -19,7 +19,7 @@ class CacheSocacheMaxSize extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/mod_cache_socache.html#cachesocachemaxsize";
     }
@@ -28,7 +28,7 @@ class CacheSocacheMaxSize extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_cache_socache";
     }
@@ -37,7 +37,7 @@ class CacheSocacheMaxSize extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "The maximum size (in bytes) of an entry to be placed in the cache";
     }
@@ -46,7 +46,7 @@ class CacheSocacheMaxSize extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'CacheSocacheMaxSize bytes';
     }

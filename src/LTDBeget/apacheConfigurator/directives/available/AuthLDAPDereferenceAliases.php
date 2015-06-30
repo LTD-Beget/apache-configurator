@@ -19,7 +19,7 @@ class AuthLDAPDereferenceAliases extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/mod_authnz_ldap.html#authldapdereferencealiases";
     }
@@ -28,7 +28,7 @@ class AuthLDAPDereferenceAliases extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_authnz_ldap";
     }
@@ -37,7 +37,7 @@ class AuthLDAPDereferenceAliases extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "When will the module de-reference aliases";
     }
@@ -46,7 +46,7 @@ class AuthLDAPDereferenceAliases extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'AuthLDAPDereferenceAliases never|searching|finding|always';
     }

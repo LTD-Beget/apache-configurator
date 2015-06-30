@@ -19,7 +19,7 @@ class CacheFile extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/mod_file_cache.html#cachefile";
     }
@@ -28,7 +28,7 @@ class CacheFile extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_file_cache";
     }
@@ -37,7 +37,7 @@ class CacheFile extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Cache a list of file handles at startup time";
     }
@@ -46,7 +46,7 @@ class CacheFile extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'CacheFile file-path [file-path] ...';
     }

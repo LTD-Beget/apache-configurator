@@ -19,7 +19,7 @@ class MaxConnectionsPerChild extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
         return Directive::$apacheSite."/docs/2.4/mod/mpm_common.html#maxconnectionsperchild";
     }
@@ -28,7 +28,7 @@ class MaxConnectionsPerChild extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "worker";
     }
@@ -37,7 +37,7 @@ class MaxConnectionsPerChild extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Limit on the number of connections that an individual child server will handle during its life";
     }
@@ -46,7 +46,7 @@ class MaxConnectionsPerChild extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'MaxConnectionsPerChild number';
     }
