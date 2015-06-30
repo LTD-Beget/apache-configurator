@@ -19,16 +19,16 @@ class AuthLDAPInitialBindAsUser extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_authnz_ldap.html#authldapinitialbindasuser";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_authnz_ldap.html#authldapinitialbindasuser";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_authnz_ldap";
     }
@@ -37,7 +37,7 @@ class AuthLDAPInitialBindAsUser extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Determines if the server does the initial DN lookup using the basic authentication users' own username, instead of anonymously or with hard-coded credentials for the server";
     }
@@ -46,7 +46,7 @@ class AuthLDAPInitialBindAsUser extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'AuthLDAPInitialBindAsUser <em>off|on</em>';
     }

@@ -29,7 +29,7 @@ class Directive implements iDirective
      * Site of Apache full documentation
      * @var string
      */
-    protected $apacheSite = "http://httpd.apache.org";
+    protected static $apacheSite = "http://httpd.apache.org";
 
     /**
      * @var Array|null
@@ -71,7 +71,7 @@ class Directive implements iDirective
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "abstract directive";
     }
@@ -170,7 +170,7 @@ class Directive implements iDirective
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return "abstract directive";
     }
@@ -179,7 +179,7 @@ class Directive implements iDirective
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "abstract directive";
     }
@@ -188,9 +188,9 @@ class Directive implements iDirective
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/directives.html";
+        return Directive::$apacheSite."/docs/2.4/mod/directives.html";
     }
 
     /**

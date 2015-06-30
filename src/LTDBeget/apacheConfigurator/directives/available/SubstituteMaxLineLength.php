@@ -19,16 +19,16 @@ class SubstituteMaxLineLength extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_substitute.html#substitutemaxlinelength";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_substitute.html#substitutemaxlinelength";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_substitute";
     }
@@ -37,7 +37,7 @@ class SubstituteMaxLineLength extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Set the maximum line size";
     }
@@ -46,7 +46,7 @@ class SubstituteMaxLineLength extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'SubstituteMaxLineLength bytes(b|B|k|K|m|M|g|G)';
     }

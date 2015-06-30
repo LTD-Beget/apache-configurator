@@ -19,16 +19,16 @@ class ImapDefault extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_imagemap.html#imapdefault";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_imagemap.html#imapdefault";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_imagemap";
     }
@@ -37,7 +37,7 @@ class ImapDefault extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Default action when an imagemap is called with coordinates that are not explicitly mapped";
     }
@@ -46,7 +46,7 @@ class ImapDefault extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'ImapDefault error|nocontent|map|referer|URL';
     }

@@ -19,16 +19,16 @@ class MimeMagicFile extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_mime_magic.html#mimemagicfile";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_mime_magic.html#mimemagicfile";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_mime_magic";
     }
@@ -37,7 +37,7 @@ class MimeMagicFile extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Enable MIME-type determination based on file contents using the specified magic file";
     }
@@ -46,7 +46,7 @@ class MimeMagicFile extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'MimeMagicFile file-path';
     }

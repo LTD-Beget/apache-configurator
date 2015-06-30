@@ -19,16 +19,16 @@ class SetEnvIfExpr extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_setenvif.html#setenvifexpr";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_setenvif.html#setenvifexpr";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_setenvif";
     }
@@ -37,7 +37,7 @@ class SetEnvIfExpr extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Sets environment variables based on an ap_expr expression";
     }
@@ -46,7 +46,7 @@ class SetEnvIfExpr extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'SetEnvIfExpr <em>expr [!]env-variable</em>[=<em>value</em>] [[!]<em>env-variable</em>[=<em>value</em>]] ...';
     }

@@ -19,16 +19,16 @@ class DirectoryCheckHandler extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_dir.html#directorycheckhandler";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_dir.html#directorycheckhandler";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_dir";
     }
@@ -37,7 +37,7 @@ class DirectoryCheckHandler extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Toggle how this module responds when another handler is configured";
     }
@@ -46,7 +46,7 @@ class DirectoryCheckHandler extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'DirectoryCheckHandler On|Off';
     }

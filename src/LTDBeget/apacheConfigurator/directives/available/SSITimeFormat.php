@@ -19,16 +19,16 @@ class SSITimeFormat extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_include.html#ssitimeformat";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_include.html#ssitimeformat";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_include";
     }
@@ -37,7 +37,7 @@ class SSITimeFormat extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Configures the format in which date strings are displayed";
     }
@@ -46,7 +46,7 @@ class SSITimeFormat extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'SSITimeFormat formatstring';
     }

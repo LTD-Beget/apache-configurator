@@ -19,16 +19,16 @@ class PidFile extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mpm_common.html#pidfile";
+        return Directive::$apacheSite."/docs/2.4/mod/mpm_common.html#pidfile";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "worker";
     }
@@ -37,7 +37,7 @@ class PidFile extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "File where the server records the process ID of the daemon";
     }
@@ -46,7 +46,7 @@ class PidFile extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'PidFile filename';
     }

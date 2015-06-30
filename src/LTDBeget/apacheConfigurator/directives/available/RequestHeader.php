@@ -19,16 +19,16 @@ class RequestHeader extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_headers.html#requestheader";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_headers.html#requestheader";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_headers";
     }
@@ -37,7 +37,7 @@ class RequestHeader extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Configure HTTP request headers";
     }
@@ -46,7 +46,7 @@ class RequestHeader extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'RequestHeader add|append|edit|edit*|merge|set|setifempty|unset header [[expr=]value [replacement] [early|env=[!]varname|expr=expression]]';
     }

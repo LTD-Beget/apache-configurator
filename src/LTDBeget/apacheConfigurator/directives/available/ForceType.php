@@ -19,16 +19,16 @@ class ForceType extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/core.html#forcetype";
+        return Directive::$apacheSite."/docs/2.4/mod/core.html#forcetype";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "core";
     }
@@ -37,7 +37,7 @@ class ForceType extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Forces all matching files to be served with the specified media type in the HTTP Content-Type header field";
     }
@@ -46,7 +46,7 @@ class ForceType extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'ForceType media-type|None';
     }

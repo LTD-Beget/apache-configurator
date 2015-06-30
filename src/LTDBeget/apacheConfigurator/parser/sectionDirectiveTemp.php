@@ -27,7 +27,7 @@ class {{NAME}} extends Directive
      */
     public function getApacheDocLink()
     {
-        return $this->apacheSite."{{LINK}}";
+        return Directive::$apacheSite."{{LINK}}";
     }
 
     /**

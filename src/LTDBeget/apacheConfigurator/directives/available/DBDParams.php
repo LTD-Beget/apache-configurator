@@ -19,16 +19,16 @@ class DBDParams extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_dbd.html#dbdparams";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_dbd.html#dbdparams";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_dbd";
     }
@@ -37,7 +37,7 @@ class DBDParams extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Parameters for database connection";
     }
@@ -46,7 +46,7 @@ class DBDParams extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'DBDParams param1=value1[,param2=value2]';
     }

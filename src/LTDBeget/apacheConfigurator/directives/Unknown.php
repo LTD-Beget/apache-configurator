@@ -71,7 +71,7 @@ class Unknown extends Directive
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return 'unknown';
     }
@@ -80,7 +80,7 @@ class Unknown extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return 'unknown';
     }
@@ -89,7 +89,7 @@ class Unknown extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'unknown';
     }

@@ -19,16 +19,16 @@ class PrivilegesMode extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_privileges.html#privilegesmode";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_privileges.html#privilegesmode";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_privileges";
     }
@@ -37,7 +37,7 @@ class PrivilegesMode extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Trade off processing speed and efficiency vs security against malicious privileges-aware code.";
     }
@@ -46,7 +46,7 @@ class PrivilegesMode extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'PrivilegesMode FAST|SECURE|SELECTIVE';
     }

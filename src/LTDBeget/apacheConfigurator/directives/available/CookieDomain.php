@@ -19,16 +19,16 @@ class CookieDomain extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_usertrack.html#cookiedomain";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_usertrack.html#cookiedomain";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_usertrack";
     }
@@ -37,7 +37,7 @@ class CookieDomain extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "The domain to which the tracking cookie applies";
     }
@@ -46,7 +46,7 @@ class CookieDomain extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'CookieDomain <em>domain</em>';
     }

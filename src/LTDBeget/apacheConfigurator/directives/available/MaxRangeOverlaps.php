@@ -19,16 +19,16 @@ class MaxRangeOverlaps extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/core.html#maxrangeoverlaps";
+        return Directive::$apacheSite."/docs/2.4/mod/core.html#maxrangeoverlaps";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "core";
     }
@@ -37,7 +37,7 @@ class MaxRangeOverlaps extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Number of overlapping ranges (eg: 100-200,150-300) allowed before returning the complete resource";
     }
@@ -46,7 +46,7 @@ class MaxRangeOverlaps extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'MaxRangeOverlaps default | unlimited | none | number-of-ranges';
     }

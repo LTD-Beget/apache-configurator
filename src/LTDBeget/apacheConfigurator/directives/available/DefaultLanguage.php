@@ -19,16 +19,16 @@ class DefaultLanguage extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_mime.html#defaultlanguage";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_mime.html#defaultlanguage";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_mime";
     }
@@ -37,7 +37,7 @@ class DefaultLanguage extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Defines a default language-tag to be sent in the Content-Language header field for all resources in the current context that have not been assigned a language-tag by some other means.";
     }
@@ -46,7 +46,7 @@ class DefaultLanguage extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'DefaultLanguage language-tag';
     }

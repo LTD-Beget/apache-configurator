@@ -19,16 +19,16 @@ class xml2EncDefault extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_xml2enc.html#xml2encdefault";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_xml2enc.html#xml2encdefault";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_xml2enc";
     }
@@ -37,7 +37,7 @@ class xml2EncDefault extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Sets a default encoding to assume when absolutely no information can be automatically detected";
     }
@@ -46,7 +46,7 @@ class xml2EncDefault extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'xml2EncDefault name';
     }

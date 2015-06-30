@@ -19,16 +19,16 @@ class LogIOTrackTTFB extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_logio.html#logiotrackttfb";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_logio.html#logiotrackttfb";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_logio";
     }
@@ -37,7 +37,7 @@ class LogIOTrackTTFB extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Enable tracking of time to first byte (TTFB)";
     }
@@ -46,7 +46,7 @@ class LogIOTrackTTFB extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'LogIOTrackTTFB ON|OFF';
     }

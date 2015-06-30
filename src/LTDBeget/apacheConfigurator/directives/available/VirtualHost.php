@@ -25,16 +25,16 @@ class VirtualHost extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/core.html#virtualhost";
+        return Directive::$apacheSite."/docs/2.4/mod/core.html#virtualhost";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "core";
     }
@@ -43,7 +43,7 @@ class VirtualHost extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Contains directives that apply only to a specific hostname or IP address";
     }
@@ -52,7 +52,7 @@ class VirtualHost extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return '<VirtualHost addr[:port] [addr[:port]] ...> ... </VirtualHost>';
     }

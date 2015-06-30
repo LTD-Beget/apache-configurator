@@ -19,16 +19,16 @@ class SecureListen extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_nw_ssl.html#securelisten";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_nw_ssl.html#securelisten";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_nw_ssl";
     }
@@ -37,7 +37,7 @@ class SecureListen extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Enables SSL encryption for the specified port";
     }
@@ -46,7 +46,7 @@ class SecureListen extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'SecureListen [IP-address:]portnumber Certificate-Name [MUTUAL]';
     }

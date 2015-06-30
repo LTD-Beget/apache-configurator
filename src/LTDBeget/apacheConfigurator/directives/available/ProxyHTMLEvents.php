@@ -19,16 +19,16 @@ class ProxyHTMLEvents extends Directive
      * Return link to full description of apache directive
      * @return String
      */
-    public function getApacheDocLink()
+    public static function getApacheDocLink()
     {
-        return $this->apacheSite."/docs/2.4/mod/mod_proxy_html.html#proxyhtmlevents";
+        return Directive::$apacheSite."/docs/2.4/mod/mod_proxy_html.html#proxyhtmlevents";
     }
 
     /**
      * the source module which defines the directive
      * @return String
      */
-    public function getModule()
+    public static function getModule()
     {
         return "mod_proxy_html";
     }
@@ -37,7 +37,7 @@ class ProxyHTMLEvents extends Directive
      * Return text description of apache directive
      * @return String
      */
-    public function getDescription()
+    public static function getDescription()
     {
         return "Specify attributes to treat as scripting events.";
     }
@@ -46,7 +46,7 @@ class ProxyHTMLEvents extends Directive
      * Return Apache directive Syntax
      * @return String
      */
-    public function getSyntax()
+    public static function getSyntax()
     {
         return 'ProxyHTMLEvents attribute [attribute ...]';
     }
