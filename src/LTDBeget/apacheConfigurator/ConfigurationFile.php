@@ -9,6 +9,7 @@
 namespace LTDBeget\apacheConfigurator;
 
 
+use LTDBeget\apacheConfigurator\directives\Directive;
 use LTDBeget\apacheConfigurator\directives\DirectivePath;
 use LTDBeget\apacheConfigurator\directives\Unknown;
 use LTDBeget\apacheConfigurator\exceptions\NotAllowedContextException;
@@ -33,6 +34,12 @@ class ConfigurationFile implements iConfigurationFile
 
     protected $innerDirectives = [];
 
+    /**
+     * list off all Available directives that are declared in library
+     * @var Array
+     */
+    protected $availableList = [];
+
 
     public function __construct($fileType)
     {
@@ -40,7 +47,23 @@ class ConfigurationFile implements iConfigurationFile
             throw new NotFoundFileTypeException("$fileType is not allowed file type for apache config file");
         }
 
+        $this->setAvailableList();
+
         $this->fileType = $fileType;
+
+    }
+
+    /**
+     * set list off all Available directives that are declared in library
+     */
+    protected function setAvailableList()
+    {
+        $pathToDirectives = __DIR__.DIRECTORY_SEPARATOR."directives".DIRECTORY_SEPARATOR."available";
+        $files = scandir($pathToDirectives);
+        $this->availableList = [];
+        foreach($files as $file) {
+            $this->availableList[] = Directive::reservedWordFlagRemover(pathinfo($file)['filename']);
+        }
     }
 
     /**
@@ -56,6 +79,8 @@ class ConfigurationFile implements iConfigurationFile
         if(is_null($context)) {
             $context = $this;
         }
+
+        $directiveName =  $this->formatDirectiveName($directiveName);
 
         // if identical directive already exists, return it, without adding it again
         $alreadyExists = $this->getInnerDirectiveIfExists($directiveName, $value, $context);
@@ -239,5 +264,28 @@ class ConfigurationFile implements iConfigurationFile
             }
         }
         return null;
+    }
+
+    /**
+     * if directive founded in available, return it name as it set there,
+     * else return its in lowerCase
+     * format directiveName to format that set in
+     * @param String $directiveName
+     * @return string
+     */
+    protected function formatDirectiveName($directiveName)
+    {
+        $directiveName = mb_strtolower($directiveName);
+        $availableList = array_flip($this->availableList);
+        foreach($availableList as $key => &$value) {
+            $value = mb_strtolower($key);
+        }
+        $availableList = array_flip($availableList);
+
+        if(array_key_exists($directiveName, $availableList)) {
+            $directiveName = $availableList[$directiveName];
+        }
+
+        return $directiveName;
     }
 }
