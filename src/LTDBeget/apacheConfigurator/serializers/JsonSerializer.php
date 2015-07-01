@@ -12,8 +12,15 @@ namespace LTDBeget\apacheConfigurator\serializers;
 use LTDBeget\apacheConfigurator\interfaces\iConfigurationFile;
 use LTDBeget\apacheConfigurator\interfaces\iSerializer;
 
-class JsonSerializer implements iSerializer
+class JsonSerializer extends BaseSerializer implements iSerializer
 {
+    /**
+     * @return JsonSerializer
+     */
+    protected static function getInstance()
+    {
+        return parent::getInstance();
+    }
 
     /**
      *

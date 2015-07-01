@@ -15,29 +15,14 @@ use LTDBeget\apacheConfigurator\interfaces\iContext;
 use LTDBeget\apacheConfigurator\interfaces\iDirective;
 use LTDBeget\apacheConfigurator\interfaces\iSerializer;
 
-class PlainSerializer implements iSerializer
+class PlainSerializer extends BaseSerializer implements iSerializer
 {
-    protected static $instance = null;
-
-    protected function __construct()
-    {
-    }
-
-    protected function __clone()
-    {
-    }
-
     /**
-     * singleton getter
      * @return PlainSerializer
      */
-    static protected function getInstance()
+    protected static function getInstance()
     {
-        if (is_null(self::$instance)) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
+        return parent::getInstance();
     }
 
     /**
@@ -165,13 +150,15 @@ class PlainSerializer implements iSerializer
         $tabulation     = $nestLevel > 0 ? str_repeat("  ", $nestLevel) : "";
 
         if ($directive->isSection()) {
-            $directivePlain = $tabulation . "<{$directive->getName()} {$directive->getValue()}>\n";
+            $directiveText = $this->customFilter($directive, "<{$directive->getName()} {$directive->getValue()}>");
+            $directivePlain = $tabulation . $directiveText . "\n";
             foreach ($directive->getInnerDirectives() as $innerDirective) {
                 $directivePlain .= $this->directiveToPlain($innerDirective, $nestLevel + 1);
             }
             $directivePlain .= $tabulation . "</{$directive->getName()}>\n";
         } else {
-            $directivePlain = $tabulation . "{$directive->getName()} {$directive->getValue()}\n";
+            $directiveText = $this->customFilter($directive, "{$directive->getName()} {$directive->getValue()}");
+            $directivePlain = $tabulation .$directiveText."\n";
         }
 
         return $directivePlain;
