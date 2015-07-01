@@ -15,26 +15,14 @@ use LTDBeget\apacheConfigurator\interfaces\iConfigurationFile;
 use LTDBeget\apacheConfigurator\interfaces\iDirective;
 use LTDBeget\apacheConfigurator\interfaces\iSerializer;
 
-class ArraySerializer implements iSerializer
+class ArraySerializer extends BaseSerializer implements iSerializer
 {
-    protected static $instance = null;
-
-    protected function __construct() {}
-
-    protected function __clone() {}
-
     /**
-     * singleton getter
      * @return ArraySerializer
      */
-    static protected function getInstance()
+    protected static function getInstance()
     {
-        if(is_null(self::$instance))
-        {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
+        return parent::getInstance();
     }
 
     /**
@@ -136,10 +124,10 @@ class ArraySerializer implements iSerializer
      */
     protected function directiveToArray(iDirective $directive)
     {
-        $directiveArray = [
+        $directiveArray = $this->customFilter($directive, [
             "directive" => $directive->getName(),
             "value"     => $directive->getValue()
-        ];
+        ]);
 
         if($directive->isSection()) {
             $directiveArray["innerDirective"] = [];
