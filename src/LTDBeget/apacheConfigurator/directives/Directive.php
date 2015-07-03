@@ -14,6 +14,7 @@ use LTDBeget\apacheConfigurator\exceptions\NotAllowedValueException;
 use LTDBeget\apacheConfigurator\interfaces\iDirective;
 use LTDBeget\apacheConfigurator\interfaces\iDirectivePath;
 use LTDBeget\apacheConfigurator\interfaces\iContext;
+use LTDBeget\apacheConfigurator\serializers\PlainSerializer;
 
 class Directive implements iDirective
 {
@@ -22,8 +23,8 @@ class Directive implements iDirective
      * Names of directives, which names are reserved words
      * @var array
      */
-    static public $reservedWordDirectivesFlagged = ["dElse", "dElseIf", "dIf", "dInclude", "dRequire", "dUse"];
-    static public $reservedWordDirectives = ["Else", "ElseIf", "If", "Include", "Require", "Use"];
+    static public $reservedWordDirectivesFlagged = ["delse", "delseif", "dif", "dinclude", "drequire", "duse"];
+    static public $reservedWordDirectives = ["else", "elseif", "if", "include", "require", "use"];
 
     /**
      * Site of Apache full documentation
@@ -104,7 +105,8 @@ class Directive implements iDirective
      */
     public static function reservedWordFlagRemover($type)
     {
-        if(in_array($type, Directive::$reservedWordDirectivesFlagged)) {
+        if(in_array(strtolower($type), Directive::$reservedWordDirectivesFlagged)) {
+            $type = strtolower($type);
             $type = substr($type, 1, strlen($type)-1);
         }
         return $type;
@@ -117,7 +119,8 @@ class Directive implements iDirective
      */
     public static function reservedWordFlagAdder($type)
     {
-        if(in_array($type, Directive::$reservedWordDirectives)) {
+        if(in_array(strtolower($type), Directive::$reservedWordDirectives)) {
+            $type = strtolower($type);
             $type = "d".$type;
         }
         return $type;
