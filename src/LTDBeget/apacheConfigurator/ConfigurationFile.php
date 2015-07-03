@@ -275,7 +275,7 @@ class ConfigurationFile implements iConfigurationFile
      */
     protected function formatDirectiveName($directiveName)
     {
-        $directiveName = mb_strtolower($directiveName);
+        $directiveName = Directive::reservedWordFlagRemover(mb_strtolower($directiveName));
         $availableList = array_flip($this->availableList);
         foreach($availableList as $key => &$value) {
             $value = mb_strtolower($key);
