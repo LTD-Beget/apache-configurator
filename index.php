@@ -83,7 +83,7 @@ $apacheArrayExample = [
                 ]
             ],
             [
-                "directive" => "IfModule",
+                "directive" => "ifMoDuLe",
                 "value"     => "mod_macro",
                 "innerDirective" => [
                     [
@@ -92,6 +92,10 @@ $apacheArrayExample = [
                     ],
                 ]
             ],
+            [
+                "directive" => "ReQuiRe",
+                "value"     => "mod_macro",
+            ]
         ]
     ],
 ];
