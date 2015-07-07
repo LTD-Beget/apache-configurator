@@ -106,10 +106,19 @@ class Directive implements iDirective
     public static function reservedWordFlagRemover($type)
     {
         if(in_array(strtolower($type), Directive::$reservedWordDirectivesFlagged)) {
-            $type = strtolower($type);
             $type = substr($type, 1, strlen($type)-1);
         }
         return $type;
+    }
+
+    /**
+     * is directive name same as php reserved words
+     * @param $type
+     * @return bool
+     */
+    public static function isReservedWordDirective($type)
+    {
+        return in_array(strtolower($type), Directive::$reservedWordDirectives);
     }
 
     /**
@@ -119,8 +128,7 @@ class Directive implements iDirective
      */
     public static function reservedWordFlagAdder($type)
     {
-        if(in_array(strtolower($type), Directive::$reservedWordDirectives)) {
-            $type = strtolower($type);
+        if(self::isReservedWordDirective($type)) {
             $type = "d".$type;
         }
         return $type;

@@ -62,7 +62,12 @@ class ConfigurationFile implements iConfigurationFile
         $files = scandir($pathToDirectives);
         $this->availableList = [];
         foreach($files as $file) {
-            $this->availableList[] = Directive::reservedWordFlagRemover(pathinfo($file)['filename']);
+            $directiveName = Directive::reservedWordFlagRemover(pathinfo($file)['filename']);
+            $lowerCaseName = strtolower($directiveName);
+            if(Directive::isReservedWordDirective($lowerCaseName)) {
+                $directiveName = pathinfo($file)['filename'];
+            }
+            $this->availableList[$lowerCaseName] = $directiveName;
         }
     }
 
@@ -275,15 +280,10 @@ class ConfigurationFile implements iConfigurationFile
      */
     protected function formatDirectiveName($directiveName)
     {
-        $directiveName = Directive::reservedWordFlagRemover(mb_strtolower($directiveName));
-        $availableList = array_flip($this->availableList);
-        foreach($availableList as $key => &$value) {
-            $value = mb_strtolower($key);
-        }
-        $availableList = array_flip($availableList);
+        $directiveName = Directive::reservedWordFlagRemover(strtolower($directiveName));
 
-        if(array_key_exists($directiveName, $availableList)) {
-            $directiveName = $availableList[$directiveName];
+        if(array_key_exists($directiveName, $this->availableList)) {
+            $directiveName = $this->availableList[$directiveName];
         }
 
         return $directiveName;
