@@ -48,7 +48,7 @@ class SSLSRPVerifierFile extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLSRPVerifierFile <em>file-path</em>';
+        return 'SSLSRPVerifierFile file-path';
     }
 
     /**

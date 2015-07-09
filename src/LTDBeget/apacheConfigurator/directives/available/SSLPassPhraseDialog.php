@@ -48,7 +48,7 @@ class SSLPassPhraseDialog extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLPassPhraseDialog <em>type</em>';
+        return 'SSLPassPhraseDialog type';
     }
 
     /**

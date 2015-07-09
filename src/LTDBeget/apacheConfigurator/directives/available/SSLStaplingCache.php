@@ -48,7 +48,7 @@ class SSLStaplingCache extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLStaplingCache <em>type</em>';
+        return 'SSLStaplingCache type';
     }
 
     /**

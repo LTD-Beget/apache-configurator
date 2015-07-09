@@ -48,7 +48,7 @@ class RewriteBase extends Directive
      */
     public static function getSyntax()
     {
-        return 'RewriteBase <em>URL-path</em>';
+        return 'RewriteBase URL-path';
     }
 
     /**

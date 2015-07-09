@@ -48,7 +48,7 @@ class SSLSessionTicketKeyFile extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLSessionTicketKeyFile <em>file-path</em>';
+        return 'SSLSessionTicketKeyFile file-path';
     }
 
     /**

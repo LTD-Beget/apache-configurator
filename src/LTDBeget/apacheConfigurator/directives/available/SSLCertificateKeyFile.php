@@ -48,7 +48,7 @@ class SSLCertificateKeyFile extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLCertificateKeyFile <em>file-path</em>';
+        return 'SSLCertificateKeyFile file-path';
     }
 
     /**

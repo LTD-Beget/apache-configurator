@@ -48,7 +48,7 @@ class LoadFile extends Directive
      */
     public static function getSyntax()
     {
-        return 'LoadFile <em>filename</em> [<em>filename</em>] ...';
+        return 'LoadFile filename [filename] ...';
     }
 
     /**

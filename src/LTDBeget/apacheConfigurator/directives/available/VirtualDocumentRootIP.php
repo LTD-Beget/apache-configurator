@@ -48,7 +48,7 @@ class VirtualDocumentRootIP extends Directive
      */
     public static function getSyntax()
     {
-        return 'VirtualDocumentRootIP <em>interpolated-directory</em>|none';
+        return 'VirtualDocumentRootIP interpolated-directory|none';
     }
 
     /**

@@ -48,7 +48,7 @@ class VirtualScriptAlias extends Directive
      */
     public static function getSyntax()
     {
-        return 'VirtualScriptAlias <em>interpolated-directory</em>|none';
+        return 'VirtualScriptAlias interpolated-directory|none';
     }
 
     /**

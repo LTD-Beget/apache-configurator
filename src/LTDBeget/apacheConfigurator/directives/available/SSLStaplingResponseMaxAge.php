@@ -48,7 +48,7 @@ class SSLStaplingResponseMaxAge extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLStaplingResponseMaxAge <em>seconds</em>';
+        return 'SSLStaplingResponseMaxAge seconds';
     }
 
     /**

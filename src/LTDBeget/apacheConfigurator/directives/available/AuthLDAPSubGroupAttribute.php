@@ -48,7 +48,7 @@ class AuthLDAPSubGroupAttribute extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthLDAPSubGroupAttribute <em>attribute</em>';
+        return 'AuthLDAPSubGroupAttribute attribute';
     }
 
     /**

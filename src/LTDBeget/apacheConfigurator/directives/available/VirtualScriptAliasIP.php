@@ -48,7 +48,7 @@ class VirtualScriptAliasIP extends Directive
      */
     public static function getSyntax()
     {
-        return 'VirtualScriptAliasIP <em>interpolated-directory</em>|none';
+        return 'VirtualScriptAliasIP interpolated-directory|none';
     }
 
     /**

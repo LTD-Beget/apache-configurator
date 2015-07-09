@@ -48,7 +48,7 @@ class CookieExpires extends Directive
      */
     public static function getSyntax()
     {
-        return 'CookieExpires <em>expiry-period</em>';
+        return 'CookieExpires expiry-period';
     }
 
     /**

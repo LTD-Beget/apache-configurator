@@ -48,7 +48,7 @@ class CookieDomain extends Directive
      */
     public static function getSyntax()
     {
-        return 'CookieDomain <em>domain</em>';
+        return 'CookieDomain domain';
     }
 
     /**

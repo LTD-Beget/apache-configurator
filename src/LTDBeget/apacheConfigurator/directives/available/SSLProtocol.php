@@ -48,7 +48,7 @@ class SSLProtocol extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLProtocol [+|-]<em>protocol</em> ...';
+        return 'SSLProtocol [+|-]protocol ...';
     }
 
     /**

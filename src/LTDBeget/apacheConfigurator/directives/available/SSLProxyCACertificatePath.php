@@ -48,7 +48,7 @@ class SSLProxyCACertificatePath extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLProxyCACertificatePath <em>directory-path</em>';
+        return 'SSLProxyCACertificatePath directory-path';
     }
 
     /**

@@ -48,7 +48,7 @@ class SSLCryptoDevice extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLCryptoDevice <em>engine</em>';
+        return 'SSLCryptoDevice engine';
     }
 
     /**

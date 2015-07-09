@@ -48,7 +48,7 @@ class CookieName extends Directive
      */
     public static function getSyntax()
     {
-        return 'CookieName <em>token</em>';
+        return 'CookieName token';
     }
 
     /**

@@ -48,7 +48,7 @@ class AuthnzFcgiDefineProvider extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthnzFcgiDefineProvider <em>type</em> <em>provider-name</em> <em>backend-address</em>';
+        return 'AuthnzFcgiDefineProvider type provider-name backend-address';
     }
 
     /**

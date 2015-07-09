@@ -48,7 +48,7 @@ class SSLProxyVerifyDepth extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLProxyVerifyDepth <em>number</em>';
+        return 'SSLProxyVerifyDepth number';
     }
 
     /**

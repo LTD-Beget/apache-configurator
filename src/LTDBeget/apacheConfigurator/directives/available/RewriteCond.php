@@ -48,7 +48,7 @@ class RewriteCond extends Directive
      */
     public static function getSyntax()
     {
-        return 'RewriteCond <em>TestString</em> <em>CondPattern</em>';
+        return 'RewriteCond TestString CondPattern';
     }
 
     /**

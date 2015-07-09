@@ -48,7 +48,7 @@ class SSLUserName extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLUserName <em>varname</em>';
+        return 'SSLUserName varname';
     }
 
     /**

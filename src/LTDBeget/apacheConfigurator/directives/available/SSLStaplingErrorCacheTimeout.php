@@ -48,7 +48,7 @@ class SSLStaplingErrorCacheTimeout extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLStaplingErrorCacheTimeout <em>seconds</em>';
+        return 'SSLStaplingErrorCacheTimeout seconds';
     }
 
     /**

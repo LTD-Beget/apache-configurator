@@ -48,7 +48,7 @@ class SetEnvIfNoCase extends Directive
      */
     public static function getSyntax()
     {
-        return 'SetEnvIfNoCase <em>attribute regex [!]env-variable</em>[=<em>value</em>] [[!]<em>env-variable</em>[=<em>value</em>]] ...';
+        return 'SetEnvIfNoCase attribute regex [!]env-variable[=value] [[!]env-variable[=value]] ...';
     }
 
     /**

@@ -48,7 +48,7 @@ class SSLOCSPResponseMaxAge extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLOCSPResponseMaxAge <em>seconds</em>';
+        return 'SSLOCSPResponseMaxAge seconds';
     }
 
     /**

@@ -48,7 +48,7 @@ class SSLRandomSeed extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLRandomSeed <em>context</em> <em>source</em> [<em>bytes</em>]';
+        return 'SSLRandomSeed context source [bytes]';
     }
 
     /**

@@ -48,7 +48,7 @@ class SSLVerifyDepth extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLVerifyDepth <em>number</em>';
+        return 'SSLVerifyDepth number';
     }
 
     /**

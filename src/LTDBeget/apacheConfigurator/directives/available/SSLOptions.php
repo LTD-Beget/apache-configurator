@@ -48,7 +48,7 @@ class SSLOptions extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLOptions [+|-]<em>option</em> ...';
+        return 'SSLOptions [+|-]option ...';
     }
 
     /**

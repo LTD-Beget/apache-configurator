@@ -48,7 +48,7 @@ class SetEnvIfExpr extends Directive
      */
     public static function getSyntax()
     {
-        return 'SetEnvIfExpr <em>expr [!]env-variable</em>[=<em>value</em>] [[!]<em>env-variable</em>[=<em>value</em>]] ...';
+        return 'SetEnvIfExpr expr [!]env-variable[=value] [[!]env-variable[=value]] ...';
     }
 
     /**

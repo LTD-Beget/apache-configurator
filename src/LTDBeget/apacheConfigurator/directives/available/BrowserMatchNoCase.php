@@ -48,7 +48,7 @@ class BrowserMatchNoCase extends Directive
      */
     public static function getSyntax()
     {
-        return 'BrowserMatchNoCase  <em>regex [!]env-variable</em>[=<em>value</em>]     [[!]<em>env-variable</em>[=<em>value</em>]] ...';
+        return 'BrowserMatchNoCase  regex [!]env-variable[=value]     [[!]env-variable[=value]] ...';
     }
 
     /**

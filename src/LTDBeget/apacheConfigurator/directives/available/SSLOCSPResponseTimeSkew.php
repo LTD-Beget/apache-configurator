@@ -48,7 +48,7 @@ class SSLOCSPResponseTimeSkew extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLOCSPResponseTimeSkew <em>seconds</em>';
+        return 'SSLOCSPResponseTimeSkew seconds';
     }
 
     /**

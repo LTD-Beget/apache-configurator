@@ -48,7 +48,7 @@ class SSLSRPUnknownUserSeed extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLSRPUnknownUserSeed <em>secret-string</em>';
+        return 'SSLSRPUnknownUserSeed secret-string';
     }
 
     /**

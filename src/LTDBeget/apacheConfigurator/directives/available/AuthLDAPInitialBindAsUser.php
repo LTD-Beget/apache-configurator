@@ -48,7 +48,7 @@ class AuthLDAPInitialBindAsUser extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthLDAPInitialBindAsUser <em>off|on</em>';
+        return 'AuthLDAPInitialBindAsUser off|on';
     }
 
     /**

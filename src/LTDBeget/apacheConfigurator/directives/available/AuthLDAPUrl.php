@@ -48,7 +48,7 @@ class AuthLDAPUrl extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthLDAPUrl <em>url [NONE|SSL|TLS|STARTTLS]</em>';
+        return 'AuthLDAPUrl url [NONE|SSL|TLS|STARTTLS]';
     }
 
     /**

@@ -48,7 +48,7 @@ class SSLVerifyClient extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLVerifyClient <em>level</em>';
+        return 'SSLVerifyClient level';
     }
 
     /**

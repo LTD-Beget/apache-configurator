@@ -48,7 +48,7 @@ class SSLSessionCache extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLSessionCache <em>type</em>';
+        return 'SSLSessionCache type';
     }
 
     /**

@@ -48,7 +48,7 @@ class LoadModule extends Directive
      */
     public static function getSyntax()
     {
-        return 'LoadModule <em>module filename</em>';
+        return 'LoadModule module filename';
     }
 
     /**
