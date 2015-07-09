@@ -280,10 +280,14 @@ class ConfigurationFile implements iConfigurationFile
      */
     protected function formatDirectiveName($directiveName)
     {
-        $directiveName = Directive::reservedWordFlagRemover(strtolower($directiveName));
+        $formattedDirectiveName = Directive::reservedWordFlagRemover(strtolower($directiveName));
 
-        if(array_key_exists($directiveName, $this->availableList)) {
-            $directiveName = $this->availableList[$directiveName];
+        if(array_key_exists($formattedDirectiveName, $this->availableList)) {
+            $directiveName = $this->availableList[$formattedDirectiveName];
+        }
+
+        if(in_array($formattedDirectiveName, Directive::$reservedWordDirectives)) {
+            $directiveName = Directive::reservedWordFlagRemover($directiveName);
         }
 
         return $directiveName;
