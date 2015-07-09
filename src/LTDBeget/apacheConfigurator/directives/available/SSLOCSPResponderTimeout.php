@@ -48,7 +48,7 @@ class SSLOCSPResponderTimeout extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLOCSPResponderTimeout <em>seconds</em>';
+        return 'SSLOCSPResponderTimeout seconds';
     }
 
     /**

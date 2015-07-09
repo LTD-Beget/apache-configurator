@@ -48,7 +48,7 @@ class SSLStaplingForceURL extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLStaplingForceURL <em>uri</em>';
+        return 'SSLStaplingForceURL uri';
     }
 
     /**

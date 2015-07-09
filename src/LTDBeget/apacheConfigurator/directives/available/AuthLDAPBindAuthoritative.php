@@ -48,7 +48,7 @@ class AuthLDAPBindAuthoritative extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthLDAPBindAuthoritative<em>off|on</em>';
+        return 'AuthLDAPBindAuthoritativeoff|on';
     }
 
     /**

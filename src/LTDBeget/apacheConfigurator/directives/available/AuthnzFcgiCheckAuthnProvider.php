@@ -48,7 +48,7 @@ class AuthnzFcgiCheckAuthnProvider extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthnzFcgiCheckAuthnProvider <em>provider-name</em>|None <em>option</em> ...';
+        return 'AuthnzFcgiCheckAuthnProvider provider-name|None option ...';
     }
 
     /**

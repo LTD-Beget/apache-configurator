@@ -48,7 +48,7 @@ class UserDir extends Directive
      */
     public static function getSyntax()
     {
-        return 'UserDir <em>directory-filename</em> [<em>directory-filename</em>] ...';
+        return 'UserDir directory-filename [directory-filename] ...';
     }
 
     /**

@@ -48,7 +48,7 @@ class VirtualDocumentRoot extends Directive
      */
     public static function getSyntax()
     {
-        return 'VirtualDocumentRoot <em>interpolated-directory</em>|none';
+        return 'VirtualDocumentRoot interpolated-directory|none';
     }
 
     /**

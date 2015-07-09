@@ -48,7 +48,7 @@ class SSLCADNRequestFile extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLCADNRequestFile <em>file-path</em>';
+        return 'SSLCADNRequestFile file-path';
     }
 
     /**

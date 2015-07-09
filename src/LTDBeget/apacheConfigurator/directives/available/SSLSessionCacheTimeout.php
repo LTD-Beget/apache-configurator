@@ -48,7 +48,7 @@ class SSLSessionCacheTimeout extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLSessionCacheTimeout <em>seconds</em>';
+        return 'SSLSessionCacheTimeout seconds';
     }
 
     /**

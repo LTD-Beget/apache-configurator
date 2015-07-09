@@ -48,7 +48,7 @@ class SSLStaplingStandardCacheTimeout extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLStaplingStandardCacheTimeout <em>seconds</em>';
+        return 'SSLStaplingStandardCacheTimeout seconds';
     }
 
     /**

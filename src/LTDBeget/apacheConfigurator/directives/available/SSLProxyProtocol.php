@@ -48,7 +48,7 @@ class SSLProxyProtocol extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLProxyProtocol [+|-]<em>protocol</em> ...';
+        return 'SSLProxyProtocol [+|-]protocol ...';
     }
 
     /**

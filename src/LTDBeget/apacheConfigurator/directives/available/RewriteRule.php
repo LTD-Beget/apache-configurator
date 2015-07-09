@@ -48,7 +48,7 @@ class RewriteRule extends Directive
      */
     public static function getSyntax()
     {
-        return 'RewriteRule <em>Pattern</em> <em>Substitution</em> [<em>flags</em>]';
+        return 'RewriteRule Pattern Substitution [flags]';
     }
 
     /**

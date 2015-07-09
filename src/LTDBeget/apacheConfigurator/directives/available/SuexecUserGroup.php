@@ -48,7 +48,7 @@ class SuexecUserGroup extends Directive
      */
     public static function getSyntax()
     {
-        return 'SuexecUserGroup <em>User Group</em>';
+        return 'SuexecUserGroup User Group';
     }
 
     /**

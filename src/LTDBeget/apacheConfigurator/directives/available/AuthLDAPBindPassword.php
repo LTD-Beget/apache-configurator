@@ -48,7 +48,7 @@ class AuthLDAPBindPassword extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthLDAPBindPassword <em>password</em>';
+        return 'AuthLDAPBindPassword password';
     }
 
     /**

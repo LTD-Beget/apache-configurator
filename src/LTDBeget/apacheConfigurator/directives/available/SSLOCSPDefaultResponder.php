@@ -48,7 +48,7 @@ class SSLOCSPDefaultResponder extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLOCSDefaultResponder <em>uri</em>';
+        return 'SSLOCSDefaultResponder uri';
     }
 
     /**

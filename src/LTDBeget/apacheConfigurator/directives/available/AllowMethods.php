@@ -48,7 +48,7 @@ class AllowMethods extends Directive
      */
     public static function getSyntax()
     {
-        return 'AllowMethods reset|<em>HTTP-method</em> [<em>HTTP-method</em>]...';
+        return 'AllowMethods reset|HTTP-method [HTTP-method]...';
     }
 
     /**

@@ -48,7 +48,7 @@ class SSLCipherSuite extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLCipherSuite <em>cipher-spec</em>';
+        return 'SSLCipherSuite cipher-spec';
     }
 
     /**

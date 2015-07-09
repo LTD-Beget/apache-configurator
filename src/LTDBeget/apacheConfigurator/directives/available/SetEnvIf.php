@@ -48,7 +48,7 @@ class SetEnvIf extends Directive
      */
     public static function getSyntax()
     {
-        return 'SetEnvIf <em>attribute regex [!]env-variable</em>[=<em>value</em>] [[!]<em>env-variable</em>[=<em>value</em>]] ...';
+        return 'SetEnvIf attribute regex [!]env-variable[=value] [[!]env-variable[=value]] ...';
     }
 
     /**

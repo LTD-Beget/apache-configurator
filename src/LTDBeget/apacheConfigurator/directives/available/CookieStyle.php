@@ -48,7 +48,7 @@ class CookieStyle extends Directive
      */
     public static function getSyntax()
     {
-        return 'CookieStyle     <em>Netscape|Cookie|Cookie2|RFC2109|RFC2965</em>';
+        return 'CookieStyle     Netscape|Cookie|Cookie2|RFC2109|RFC2965';
     }
 
     /**

@@ -48,7 +48,7 @@ class AuthLDAPCharsetConfig extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthLDAPCharsetConfig <em>file-path</em>';
+        return 'AuthLDAPCharsetConfig file-path';
     }
 
     /**

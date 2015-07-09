@@ -48,7 +48,7 @@ class AuthLDAPInitialBindPattern extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthLDAPInitialBindPattern<em>regex substitution</em>';
+        return 'AuthLDAPInitialBindPatternregex substitution';
     }
 
     /**

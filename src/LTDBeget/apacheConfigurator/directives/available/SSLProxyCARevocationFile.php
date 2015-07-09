@@ -48,7 +48,7 @@ class SSLProxyCARevocationFile extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLProxyCARevocationFile <em>file-path</em>';
+        return 'SSLProxyCARevocationFile file-path';
     }
 
     /**

@@ -48,7 +48,7 @@ class SSLStaplingResponseTimeSkew extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLStaplingResponseTimeSkew <em>seconds</em>';
+        return 'SSLStaplingResponseTimeSkew seconds';
     }
 
     /**

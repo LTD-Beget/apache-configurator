@@ -48,7 +48,7 @@ class SSLRequire extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLRequire <em>expression</em>';
+        return 'SSLRequire expression';
     }
 
     /**

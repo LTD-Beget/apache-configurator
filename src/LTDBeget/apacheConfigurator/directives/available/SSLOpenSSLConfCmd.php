@@ -48,7 +48,7 @@ class SSLOpenSSLConfCmd extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLOpenSSLConfCmd <em>command-name</em> <em>command-value</em>';
+        return 'SSLOpenSSLConfCmd command-name command-value';
     }
 
     /**

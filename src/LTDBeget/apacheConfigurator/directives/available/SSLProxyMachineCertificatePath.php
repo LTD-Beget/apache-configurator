@@ -48,7 +48,7 @@ class SSLProxyMachineCertificatePath extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLProxyMachineCertificatePath <em>directory</em>';
+        return 'SSLProxyMachineCertificatePath directory';
     }
 
     /**

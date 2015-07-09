@@ -48,7 +48,7 @@ class RewriteMap extends Directive
      */
     public static function getSyntax()
     {
-        return 'RewriteMap <em>MapName</em> <em>MapType</em>:<em>MapSource</em>';
+        return 'RewriteMap MapName MapType:MapSource';
     }
 
     /**

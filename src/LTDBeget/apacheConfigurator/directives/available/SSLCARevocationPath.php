@@ -48,7 +48,7 @@ class SSLCARevocationPath extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLCARevocationPath <em>directory-path</em>';
+        return 'SSLCARevocationPath directory-path';
     }
 
     /**

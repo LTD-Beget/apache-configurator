@@ -48,7 +48,7 @@ class AuthLDAPBindDN extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthLDAPBindDN <em>distinguished-name</em>';
+        return 'AuthLDAPBindDN distinguished-name';
     }
 
     /**

@@ -48,7 +48,7 @@ class SSLProxyMachineCertificateFile extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLProxyMachineCertificateFile <em>filename</em>';
+        return 'SSLProxyMachineCertificateFile filename';
     }
 
     /**

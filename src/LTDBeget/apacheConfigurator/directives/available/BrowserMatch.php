@@ -48,7 +48,7 @@ class BrowserMatch extends Directive
      */
     public static function getSyntax()
     {
-        return 'BrowserMatch <em>regex [!]env-variable</em>[=<em>value</em>] [[!]<em>env-variable</em>[=<em>value</em>]] ...';
+        return 'BrowserMatch regex [!]env-variable[=value] [[!]env-variable[=value]] ...';
     }
 
     /**

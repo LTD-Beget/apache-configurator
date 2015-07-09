@@ -48,7 +48,7 @@ class AuthLDAPAuthorizePrefix extends Directive
      */
     public static function getSyntax()
     {
-        return 'AuthLDAPAuthorizePrefix <em>prefix</em>';
+        return 'AuthLDAPAuthorizePrefix prefix';
     }
 
     /**

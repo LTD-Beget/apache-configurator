@@ -48,7 +48,7 @@ class SSLStaplingResponderTimeout extends Directive
      */
     public static function getSyntax()
     {
-        return 'SSLStaplingResponderTimeout <em>seconds</em>';
+        return 'SSLStaplingResponderTimeout seconds';
     }
 
     /**
