@@ -3,7 +3,7 @@ namespace LTDBeget\apacheConfigurator\directives\available;
 
 use LTDBeget\apacheConfigurator\directives\Directive;
 
-class PassengerPythonEnabled extends Directive
+class PassengerPython extends Directive
 {
     /**
      * Return link to full description of apache directive
