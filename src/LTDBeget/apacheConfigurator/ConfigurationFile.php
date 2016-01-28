@@ -13,6 +13,7 @@ use LTDBeget\apacheConfigurator\directives\Directive;
 use LTDBeget\apacheConfigurator\directives\DirectivePath;
 use LTDBeget\apacheConfigurator\directives\Unknown;
 use LTDBeget\apacheConfigurator\exceptions\NotAllowedContextException;
+use LTDBeget\apacheConfigurator\exceptions\NotAllowedValueException;
 use LTDBeget\apacheConfigurator\exceptions\NotFoundDirectiveException;
 use LTDBeget\apacheConfigurator\exceptions\NotFoundFileTypeException;
 use LTDBeget\apacheConfigurator\exceptions\WrongDirectivePathFormat;
@@ -78,9 +79,13 @@ class ConfigurationFile implements iConfigurationFile
      * @return iDirective
      * @throws NotFoundDirectiveException
      * @throws WrongDirectivePathFormat
+     * @throws NotAllowedValueException
      */
     public function addDirective($directiveName, $value, iContext $context = null)
     {
+        $this->checkOnControlSymbols($directiveName);
+        $this->checkOnControlSymbols($value);
+
         if(is_null($context)) {
             $context = $this;
         }
@@ -291,5 +296,16 @@ class ConfigurationFile implements iConfigurationFile
         }
 
         return $directiveName;
+    }
+
+    /**
+     * @param $value
+     * @throws NotAllowedValueException
+     */
+    protected function checkOnControlSymbols($value)
+    {
+        if(!ctype_print($value)) {
+            throw new NotAllowedValueException("Control symbols is not allowed");
+        }
     }
 }

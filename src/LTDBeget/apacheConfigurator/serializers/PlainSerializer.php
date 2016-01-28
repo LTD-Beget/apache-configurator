@@ -44,7 +44,7 @@ class PlainSerializer extends BaseSerializer implements iSerializer
     /**
      * @param String $fileType
      * @param String|array $configuration
-     * @return iConfigurationFile
+     * @return ConfigurationFile
      */
     public static function deserialize($fileType, $configuration)
     {
