@@ -19,9 +19,9 @@ abstract class BaseSerializer
 
     protected function __construct(){}
 
-    private function __clone(){}
+    public function __clone(){}
 
-    private function __wakeup(){}
+    public function __wakeup(){}
 
     /**
      * singleton init and store in $instances
